@@ -1,273 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portofolio Nabil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/4b9ba14b0c.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Showcase</title>
   <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(120deg,#f0f4f8,#dfe9f3);
-      color:#333;
-      line-height:1.6;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      color: #333;
     }
+
     header {
-      text-align:center;
-      padding:50px 20px;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
     }
-    header img {
-      width:130px;
-      height:130px;
-      border-radius:50%;
-      border:4px solid #555;
-      object-fit:cover;
-      margin-bottom:20px;
-    }
+
     header h1 {
-      font-size:2.2rem;
-      font-weight:700;
-    }
-    header h2 {
-      font-size:1.2rem;
-      margin-top:10px;
-      font-weight:500;
-      color:#444;
-    }
-    .typing {
-      color:#0077ff;
-      font-weight:700;
-      font-size:1.1rem;
-      margin-top:8px;
-      min-height:28px;
+      margin: 0;
+      font-size: 2.5rem;
     }
 
-    /* About Me */
-    section.about {
-      max-width:900px;
-      margin:40px auto;
-      background:#fff;
-      padding:30px;
-      border-radius:20px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.1);
-      text-align:center;
-    }
-    section.about h2 {
-      font-size:1.8rem;
-      margin-bottom:15px;
-      color:#0077ff;
-    }
-    section.about p {
-      font-size:1rem;
-      line-height:1.8;
-      color:#555;
+    .showcase {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
     }
 
-    /* Tabs */
     .tabs {
-      max-width:1000px;
-      margin:50px auto;
-      padding:20px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
     }
-    .tab-buttons {
-      display:flex;
-      justify-content:center;
-      margin-bottom:25px;
+
+    .tab-btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      background: #e0e0e0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
     }
-    .tab-buttons button {
-      background:#eee;
-      border:none;
-      padding:12px 25px;
-      margin:0 10px;
-      font-size:1rem;
-      border-radius:10px;
-      cursor:pointer;
-      transition:.3s;
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
     }
-    .tab-buttons button.active {
-      background:#0077ff;
-      color:#fff;
-      font-weight:600;
-    }
+
     .tab-content {
-      background:#fff;
-      border-radius:15px;
-      padding:30px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
     }
-    .tab-content > div {display:none;}
-    .tab-content > div.active {display:block;}
 
-    /* Tech stack icons */
-    .tech-icons {
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:40px;
-      font-size:3rem;
-      color:#0077ff;
+    .tab-content.active {
+      display: block;
     }
-    .tech-icons i {transition:.3s;}
-    .tech-icons i:hover {transform:scale(1.2); color:#ff6600;}
 
-    /* Project cards */
-    .projects {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
+    .tab-content h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #444;
     }
-    .project {
-      background:#f9f9f9;
-      border-radius:15px;
-      padding:20px;
-      box-shadow:0 3px 12px rgba(0,0,0,0.08);
-      transition:.3s;
-    }
-    .project:hover {transform:translateY(-5px);}
-    .project img {
-      width:100%;
-      border-radius:10px;
-      margin-bottom:15px;
-    }
-    .project h3 {margin-bottom:10px; color:#0077ff;}
 
-    /* Certificate list */
-    .certificates li {
-      margin-bottom:12px;
-      padding:12px;
-      background:#f5faff;
-      border-left:5px solid #0077ff;
-      border-radius:8px;
-      list-style:none;
+    .item {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-left: 4px solid #667eea;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    .item h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+      color: #222;
     }
 
     footer {
-      text-align:center;
-      padding:30px;
-      margin-top:50px;
-      background:#fff;
-      box-shadow:0 -3px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      background: #333;
+      color: white;
+    }
+
+    .socials {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .socials a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      color: #667eea;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="https://via.placeholder.com/130" alt="Foto Profil"/>
-    <h1>I am Muhammad Nabil Putra Ramadhan</h1>
-    <div class="typing"></div>
+    <h1>Portfolio Showcase</h1>
+    <p>Selamat datang di portofolio saya</p>
   </header>
 
-  <!-- About -->
-  <section class="about">
-    <h2>About Me</h2>
-    <p>
-      Halo! Saya Nabil, seorang pelajar yang memiliki passion besar di bidang 
-      <b>UI/UX Design</b> dan <b>Pengembangan Aplikasi Web</b>.  
-      Saya suka menciptakan desain antarmuka yang menarik, sederhana, dan mudah digunakan, 
-      sekaligus membangun pengalaman digital yang memberikan nilai lebih bagi pengguna.  
-      Saya percaya bahwa teknologi bisa membawa dampak positif bagi masyarakat jika dirancang dengan tepat.
-    </p>
-  </section>
-
-  <!-- Tabs -->
-  <section class="tabs">
-    <div class="tab-buttons">
+  <section class="showcase">
+    <div class="tabs">
       <button class="tab-btn active" data-tab="stack">Teach Stack</button>
-      <button class="tab-btn" data-tab="projects">Proyek</button>
-      <button class="tab-btn" data-tab="certificates">Sertifikat</button>
+      <button class="tab-btn" data-tab="proyek">Proyek</button>
+      <button class="tab-btn" data-tab="sertifikat">Sertifikat</button>
     </div>
 
-    <div class="tab-content">
-      <!-- Stack -->
-      <div id="stack" class="active">
-        <div class="tech-icons">
-          <i class="fab fa-html5"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fab fa-js"></i>
-          <i class="fab fa-php"></i>
-          <i class="fab fa-laravel"></i>
-          <i class="fab fa-react"></i>
-          <i class="fab fa-figma"></i>
-        </div>
-      </div>
+    <div id="stack" class="tab-content active">
+      <h2>Teach Stack</h2>
+      <div class="item"><h3>HTML5</h3></div>
+      <div class="item"><h3>CSS3</h3></div>
+      <div class="item"><h3>JavaScript</h3></div>
+      <div class="item"><h3>React</h3></div>
+      <div class="item"><h3>PHP</h3></div>
+      <div class="item"><h3>Laravel</h3></div>
+    </div>
 
-      <!-- Projects -->
-      <div id="projects">
-        <div class="projects">
-          <div class="project">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 1">
-            <h3>Website Penjualan Kue</h3>
-            <p>Web interaktif untuk jual beli kue dengan sistem pemesanan online dan desain modern.</p>
-          </div>
-          <div class="project">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 2">
-            <h3>Aplikasi Finance</h3>
-            <p>Aplikasi pencatatan keuangan pribadi dengan fitur harian, mingguan, dan bulanan.</p>
-          </div>
-        </div>
+    <div id="proyek" class="tab-content">
+      <h2>Proyek</h2>
+      <div class="item">
+        <h3>Website Penjualan Kue</h3>
+        <p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p>
       </div>
+      <div class="item">
+        <h3>Aplikasi Finance</h3>
+        <p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p>
+      </div>
+    </div>
 
-      <!-- Certificates -->
-      <div id="certificates">
-        <ul class="certificates">
-          <li>Sertifikat UI/UX Design – Digital Talent Program 2025</li>
-          <li>Sertifikat Front-End Development – Dicoding</li>
-          <li>Sertifikat Pelatihan Laravel – SMK Telkom Sidoarjo</li>
-        </ul>
+    <div id="sertifikat" class="tab-content">
+      <h2>Sertifikat</h2>
+      <div class="item">
+        <h3>Sertifikat UI/UX</h3>
+        <p>Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</p>
+      </div>
+      <div class="item">
+        <h3>Sertifikat Laravel</h3>
+        <p>Sertifikat pelatihan backend development dengan framework Laravel.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 Muhammad Nabil Putra Ramadhan</p>
+    <h2>Contact Me</h2>
+    <p>Silakan hubungi saya melalui media sosial berikut:</p>
+    <div class="socials">
+      <a href="#">🌐</a>
+      <a href="#">📧</a>
+      <a href="#">💼</a>
+      <a href="#">📱</a>
+    </div>
   </footer>
 
   <script>
-    // Tabs
-    const tabBtns = document.querySelectorAll(".tab-btn");
-    const tabContents = document.querySelectorAll(".tab-content > div");
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
 
-    tabBtns.forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        tabBtns.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        const target = btn.getAttribute("data-tab");
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
 
-        tabContents.forEach(c=>{
-          c.classList.remove("active");
-          if(c.id === target){ c.classList.add("active"); }
-        });
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
       });
     });
-
-    // Typing animation
-    const roles = ["UI/UX Designer", "Front-End Developer"];
-    let roleIndex = 0;
-    let charIndex = 0;
-    const typingEl = document.querySelector(".typing");
-
-    function type() {
-      if(charIndex < roles[roleIndex].length) {
-        typingEl.textContent += roles[roleIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(type,100);
-      } else {
-        setTimeout(erase,1500);
-      }
-    }
-    function erase() {
-      if(charIndex > 0) {
-        typingEl.textContent = roles[roleIndex].substring(0,charIndex-1);
-        charIndex--;
-        setTimeout(erase,50);
-      } else {
-        roleIndex = (roleIndex+1)%roles.length;
-        setTimeout(type,200);
-      }
-    }
-    document.addEventListener("DOMContentLoaded",()=>{ type(); });
   </script>
 </body>
 </html>

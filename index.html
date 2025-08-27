@@ -1,194 +1,319 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Showcase</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio Nabil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/4b9ba14b0c.js" crossorigin="anonymous"></script>
   <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #f4f6f9;
-      color: #333;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg,#f0f4f8,#dfe9f3);
+      color:#333;
+      line-height:1.6;
     }
-
     header {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
+      text-align:center;
+      padding:50px 20px;
     }
-
+    header img {
+      width:130px;
+      height:130px;
+      border-radius:50%;
+      border:4px solid #555;
+      object-fit:cover;
+      margin-bottom:20px;
+    }
     header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+      font-size:2.2rem;
+      font-weight:700;
+    }
+    header h2 {
+      font-size:1.2rem;
+      margin-top:10px;
+      font-weight:500;
+      color:#444;
+    }
+    .typing {
+      color:#0077ff;
+      font-weight:700;
+      font-size:1.1rem;
+      margin-top:8px;
+      min-height:28px;
     }
 
-    .showcase {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    /* About Me */
+    section.about {
+      max-width:900px;
+      margin:40px auto;
+      background:#fff;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    section.about h2 {
+      font-size:1.8rem;
+      margin-bottom:15px;
+      color:#0077ff;
+    }
+    section.about p {
+      font-size:1rem;
+      line-height:1.8;
+      color:#555;
     }
 
+    /* Tabs */
     .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      gap: 1rem;
+      max-width:1000px;
+      margin:50px auto;
+      padding:20px;
     }
-
-    .tab-btn {
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 30px;
-      background: #e0e0e0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
+    .tab-buttons {
+      display:flex;
+      justify-content:center;
+      margin-bottom:25px;
     }
-
-    .tab-btn.active {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
+    .tab-buttons button {
+      background:#eee;
+      border:none;
+      padding:12px 25px;
+      margin:0 10px;
+      font-size:1rem;
+      border-radius:10px;
+      cursor:pointer;
+      transition:.3s;
     }
-
+    .tab-buttons button.active {
+      background:#0077ff;
+      color:#fff;
+      font-weight:600;
+    }
     .tab-content {
-      display: none;
-      animation: fadeIn 0.5s ease-in-out;
+      background:#fff;
+      border-radius:15px;
+      padding:30px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+    .tab-content > div {display:none;}
+    .tab-content > div.active {display:block; animation:fadeIn .5s;}
+    @keyframes fadeIn {from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+
+    /* Tech stack icons */
+    .tech-icons {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:40px;
+      font-size:3rem;
+      color:#0077ff;
+    }
+    .tech-icons i {transition:.3s;}
+    .tech-icons i:hover {transform:scale(1.2); color:#ff6600;}
+
+    /* Project cards */
+    .projects {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+    .project {
+      background:#f9f9f9;
+      border-radius:15px;
+      padding:20px;
+      box-shadow:0 3px 12px rgba(0,0,0,0.08);
+      transition:.3s;
+    }
+    .project:hover {transform:translateY(-5px);}
+    .project img {
+      width:100%;
+      border-radius:10px;
+      margin-bottom:15px;
+    }
+    .project h3 {margin-bottom:10px; color:#0077ff;}
+
+    /* Certificate list */
+    .certificates li {
+      margin-bottom:12px;
+      padding:12px;
+      background:#f5faff;
+      border-left:5px solid #0077ff;
+      border-radius:8px;
+      list-style:none;
     }
 
-    .tab-content.active {
-      display: block;
+    /* Contact */
+    .contact {
+      max-width:900px;
+      margin:50px auto;
+      background:#fff;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      text-align:center;
     }
-
-    .tab-content h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-      color: #444;
+    .contact h2 {
+      font-size:1.8rem;
+      margin-bottom:15px;
+      color:#0077ff;
     }
-
-    .item {
-      margin-bottom: 1rem;
-      padding: 1rem;
-      border-left: 4px solid #667eea;
-      background: #f9f9f9;
-      border-radius: 8px;
+    .social-links {
+      margin-top:20px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
     }
-
-    .item h3 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.2rem;
-      color: #222;
+    .social-links a {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      background:#0077ff;
+      color:#fff;
+      padding:10px 18px;
+      border-radius:10px;
+      transition:.3s;
     }
+    .social-links a:hover {background:#005fcc;}
 
     footer {
-      text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      background: #333;
-      color: white;
-    }
-
-    .socials {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .socials a {
-      text-decoration: none;
-      color: white;
-      font-size: 1.5rem;
-      transition: 0.3s;
-    }
-
-    .socials a:hover {
-      color: #667eea;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+      background:#fff;
+      box-shadow:0 -3px 10px rgba(0,0,0,0.05);
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Portfolio Showcase</h1>
-    <p>Selamat datang di portofolio saya</p>
+    <img src="https://via.placeholder.com/130" alt="Foto Profil"/>
+    <h1>I am Muhammad Nabil Putra Ramadhan</h1>
+    <div class="typing"></div>
   </header>
 
-  <section class="showcase">
-    <div class="tabs">
+  <!-- About -->
+  <section class="about">
+    <h2>About Me</h2>
+    <p>
+      Halo! Saya Nabil, seorang pelajar yang memiliki passion besar di bidang 
+      <b>UI/UX Design</b> dan <b>Pengembangan Aplikasi Web</b>.  
+      Saya suka menciptakan desain antarmuka yang menarik, sederhana, dan mudah digunakan, 
+      sekaligus membangun pengalaman digital yang memberikan nilai lebih bagi pengguna.  
+      Saya percaya bahwa teknologi bisa membawa dampak positif bagi masyarakat jika dirancang dengan tepat.
+    </p>
+  </section>
+
+  <!-- PORTOFOLIO SHOWCASE -->
+  <section class="tabs">
+    <div class="tab-buttons">
       <button class="tab-btn active" data-tab="stack">Teach Stack</button>
-      <button class="tab-btn" data-tab="proyek">Proyek</button>
-      <button class="tab-btn" data-tab="sertifikat">Sertifikat</button>
+      <button class="tab-btn" data-tab="projects">Proyek</button>
+      <button class="tab-btn" data-tab="certificates">Sertifikat</button>
     </div>
 
-    <div id="stack" class="tab-content active">
-      <h2>Teach Stack</h2>
-      <div class="item"><h3>HTML5</h3></div>
-      <div class="item"><h3>CSS3</h3></div>
-      <div class="item"><h3>JavaScript</h3></div>
-      <div class="item"><h3>React</h3></div>
-      <div class="item"><h3>PHP</h3></div>
-      <div class="item"><h3>Laravel</h3></div>
-    </div>
+    <div class="tab-content">
+      <!-- Stack -->
+      <div id="stack" class="active">
+        <div class="tech-icons">
+          <i class="fab fa-html5" title="HTML5"></i>
+          <i class="fab fa-css3-alt" title="CSS3"></i>
+          <i class="fab fa-js" title="JavaScript"></i>
+          <i class="fab fa-react" title="React"></i>
+          <i class="fab fa-php" title="PHP"></i>
+          <i class="fab fa-laravel" title="Laravel"></i>
+        </div>
+      </div>
 
-    <div id="proyek" class="tab-content">
-      <h2>Proyek</h2>
-      <div class="item">
-        <h3>Website Penjualan Kue</h3>
-        <p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p>
+      <!-- Projects -->
+      <div id="projects">
+        <div class="projects">
+          <div class="project">
+            <img src="https://via.placeholder.com/400x200" alt="Proyek 1">
+            <h3>Website Penjualan Kue</h3>
+            <p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p>
+          </div>
+          <div class="project">
+            <img src="https://via.placeholder.com/400x200" alt="Proyek 2">
+            <h3>Aplikasi Finance</h3>
+            <p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p>
+          </div>
+        </div>
       </div>
-      <div class="item">
-        <h3>Aplikasi Finance</h3>
-        <p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p>
-      </div>
-    </div>
 
-    <div id="sertifikat" class="tab-content">
-      <h2>Sertifikat</h2>
-      <div class="item">
-        <h3>Sertifikat UI/UX</h3>
-        <p>Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</p>
-      </div>
-      <div class="item">
-        <h3>Sertifikat Laravel</h3>
-        <p>Sertifikat pelatihan backend development dengan framework Laravel.</p>
+      <!-- Certificates -->
+      <div id="certificates">
+        <ul class="certificates">
+          <li><b>Sertifikat UI/UX</b> – Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</li>
+          <li><b>Sertifikat Laravel</b> – Sertifikat pelatihan backend development dengan framework Laravel.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <footer>
+  <!-- Contact -->
+  <section class="contact">
     <h2>Contact Me</h2>
     <p>Silakan hubungi saya melalui media sosial berikut:</p>
-    <div class="socials">
-      <a href="#">🌐</a>
-      <a href="#">📧</a>
-      <a href="#">💼</a>
-      <a href="#">📱</a>
+    <div class="social-links">
+      <a href="https://wa.me/628123456789" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="mailto:nabil@example.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://www.linkedin.com/in/nabil" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/nabil" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Muhammad Nabil Putra Ramadhan</p>
   </footer>
 
   <script>
-    const tabs = document.querySelectorAll('.tab-btn');
-    const contents = document.querySelectorAll('.tab-content');
+    // Tabs
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content > div");
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(btn => btn.classList.remove('active'));
-        contents.forEach(content => content.classList.remove('active'));
+    tabBtns.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        tabBtns.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const target = btn.getAttribute("data-tab");
 
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+        tabContents.forEach(c=>{
+          c.classList.remove("active");
+          if(c.id === target){ c.classList.add("active"); }
+        });
       });
     });
+
+    // Typing animation
+    const roles = ["UI/UX Designer", "Front-End Developer"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    const typingEl = document.querySelector(".typing");
+
+    function type() {
+      if(charIndex < roles[roleIndex].length) {
+        typingEl.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type,100);
+      } else {
+        setTimeout(erase,1500);
+      }
+    }
+    function erase() {
+      if(charIndex > 0) {
+        typingEl.textContent = roles[roleIndex].substring(0,charIndex-1);
+        charIndex--;
+        setTimeout(erase,50);
+      } else {
+        roleIndex = (roleIndex+1)%roles.length;
+        setTimeout(type,200);
+      }
+    }
+    document.addEventListener("DOMContentLoaded",()=>{ type(); });
   </script>
 </body>
 </html>

@@ -1,273 +1,301 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portofolio Nabil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/4b9ba14b0c.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Muhammad Nabil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * {margin:0; padding:0; box-sizing:border-box;}
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(120deg,#f0f4f8,#dfe9f3);
-      color:#333;
-      line-height:1.6;
-    }
-    header {
-      text-align:center;
-      padding:50px 20px;
-    }
-    header img {
-      width:130px;
-      height:130px;
-      border-radius:50%;
-      border:4px solid #555;
-      object-fit:cover;
-      margin-bottom:20px;
-    }
-    header h1 {
-      font-size:2.2rem;
-      font-weight:700;
-    }
-    header h2 {
-      font-size:1.2rem;
-      margin-top:10px;
-      font-weight:500;
-      color:#444;
-    }
-    .typing {
-      color:#0077ff;
-      font-weight:700;
-      font-size:1.1rem;
-      margin-top:8px;
-      min-height:28px;
-    }
-
-    /* About Me */
-    section.about {
-      max-width:900px;
-      margin:40px auto;
-      background:#fff;
-      padding:30px;
-      border-radius:20px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.1);
-      text-align:center;
-    }
-    section.about h2 {
-      font-size:1.8rem;
-      margin-bottom:15px;
-      color:#0077ff;
-    }
-    section.about p {
-      font-size:1rem;
-      line-height:1.8;
-      color:#555;
-    }
-
-    /* Tabs */
-    .tabs {
-      max-width:1000px;
-      margin:50px auto;
-      padding:20px;
-    }
-    .tab-buttons {
-      display:flex;
-      justify-content:center;
-      margin-bottom:25px;
-    }
-    .tab-buttons button {
-      background:#eee;
-      border:none;
-      padding:12px 25px;
-      margin:0 10px;
-      font-size:1rem;
-      border-radius:10px;
-      cursor:pointer;
-      transition:.3s;
-    }
-    .tab-buttons button.active {
-      background:#0077ff;
+      font-family:'Poppins', sans-serif;
+      background:linear-gradient(-45deg, #0a0a0a, #1a0033, #090021, #140032);
+      background-size:400% 400%;
+      animation: gradientMove 15s ease infinite;
       color:#fff;
-      font-weight:600;
+      overflow-x:hidden;
     }
-    .tab-content {
-      background:#fff;
-      border-radius:15px;
-      padding:30px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    }
-    .tab-content > div {display:none;}
-    .tab-content > div.active {display:block;}
-
-    /* Tech stack icons */
-    .tech-icons {
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:40px;
-      font-size:3rem;
-      color:#0077ff;
-    }
-    .tech-icons i {transition:.3s;}
-    .tech-icons i:hover {transform:scale(1.2); color:#ff6600;}
-
-    /* Project cards */
-    .projects {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
-    }
-    .project {
-      background:#f9f9f9;
-      border-radius:15px;
-      padding:20px;
-      box-shadow:0 3px 12px rgba(0,0,0,0.08);
-      transition:.3s;
-    }
-    .project:hover {transform:translateY(-5px);}
-    .project img {
-      width:100%;
-      border-radius:10px;
-      margin-bottom:15px;
-    }
-    .project h3 {margin-bottom:10px; color:#0077ff;}
-
-    /* Certificate list */
-    .certificates li {
-      margin-bottom:12px;
-      padding:12px;
-      background:#f5faff;
-      border-left:5px solid #0077ff;
-      border-radius:8px;
-      list-style:none;
+    @keyframes gradientMove {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
     }
 
-    footer {
-      text-align:center;
-      padding:30px;
-      margin-top:50px;
-      background:#fff;
-      box-shadow:0 -3px 10px rgba(0,0,0,0.05);
+    /* Navbar */
+    nav {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:20px 60px;
+      position:fixed; width:100%; top:0; z-index:100;
+      background:rgba(10,10,10,0.4); backdrop-filter:blur(8px);
     }
+    nav .logo {font-weight:700; font-size:1.2rem; color:#9a6bff;}
+    nav a {
+      text-decoration:none; color:#fff; margin:0 15px; transition:0.3s;
+    }
+    nav a:hover {color:#9a6bff;}
+    .btn-contact {
+      padding:8px 18px; border:2px solid #9a6bff; border-radius:25px;
+      transition:0.4s;
+    }
+    .btn-contact:hover {
+      background:#9a6bff; color:#fff; box-shadow:0 0 15px #9a6bff;
+    }
+
+    /* Hero */
+    .hero {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:150px 60px 80px; gap:40px; min-height:100vh;
+    }
+    .hero-text {max-width:50%;}
+    .hero-text h1 {font-size:2.5rem; line-height:1.4;}
+    .hero-text span {color:#9a6bff;}
+    .hero-text p {margin:20px 0; color:#bbb; line-height:1.7;}
+    .hero-text button {
+      padding:12px 24px; border:none; background:#9a6bff; color:#fff;
+      border-radius:25px; cursor:pointer; transition:0.4s;
+    }
+    .hero-text button:hover {box-shadow:0 0 20px #9a6bff; transform:scale(1.05);}
+    .hero-img img {
+      width:320px; border-radius:20px;
+      box-shadow:0 0 25px #9a6bff88;
+      animation: float 3s infinite ease-in-out;
+    }
+
+    .typing {
+      font-size:1.2rem;
+      color:#9a6bff;
+      border-right:3px solid #9a6bff;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+
+    /* About */
+    .about {text-align:center; padding:100px 20px;}
+    .about h2 {font-size:2rem; margin-bottom:40px; color:#9a6bff;}
+    .about-content {
+      max-width:1000px; margin:auto; display:flex; gap:40px;
+      align-items:center; justify-content:center; flex-wrap:wrap;
+      background:#111; padding:40px; border-radius:20px;
+      box-shadow:0 0 25px #9a6bff55;
+    }
+    .about-content img {
+      width:240px; border-radius:20px;
+      border:2px solid #9a6bff; box-shadow:0 0 25px #9a6bff80;
+      transition:0.5s;
+    }
+    .about-content img:hover {transform:scale(1.05) rotate(-2deg);}
+    .about-text {max-width:600px; text-align:left; color:#ccc;}
+    .about-text h3 {margin-bottom:15px; color:#fff;}
+    .highlight {color:#9a6bff; font-weight:600;}
+
+    .skills {margin-top:20px;}
+    .skill {margin-bottom:15px;}
+    .skill span {display:block; margin-bottom:6px; color:#fff;}
+    .progress {
+      background:#222; height:10px; border-radius:8px;
+      overflow:hidden;
+    }
+    .progress div {
+      height:10px; background:#9a6bff;
+    }
+
+    /* Portfolio */
+    .portfolio {padding:100px 20px; text-align:center;}
+    .portfolio h2 {font-size:2rem; margin-bottom:40px;}
+    .tabs {display:flex; justify-content:center; gap:20px; margin-bottom:40px; flex-wrap:wrap;}
+    .tab {
+      background:transparent; padding:12px 30px;
+      border-radius:25px; border:2px solid #9a6bff; cursor:pointer;
+      transition:0.4s; color:#fff;
+    }
+    .tab:hover, .tab.active {background:#9a6bff; box-shadow:0 0 20px #9a6bff;}
+    .tab-content {display:none; animation:fadeInUp 1s;}
+    .tab-content.active {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .card {
+      background:#111; padding:20px; border-radius:15px;
+      box-shadow:0 0 15px #000; transition:0.4s; text-align:center;
+    }
+    .card:hover {transform:translateY(-8px); box-shadow:0 0 25px #9a6bff80;}
+    .card i {font-size:3rem; margin-bottom:12px; color:#9a6bff;}
+    .card h3 {color:#fff; margin-bottom:8px;}
+
+    /* Contact */
+    .contact {padding:100px 20px; text-align:center;}
+    .contact h2 {color:#9a6bff; margin-bottom:20px;}
+    .contact p {color:#bbb; margin-bottom:20px;}
+    .socials a {
+      margin:0 15px; font-size:1.5rem; color:#fff; transition:0.3s;
+    }
+    .socials a:hover {color:#9a6bff;}
+
+    /* Animations */
+    @keyframes float {
+      0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from{opacity:0; transform:translateY(40px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+    .reveal {opacity:0; transform:translateY(50px); transition:1s;}
+    .reveal.active {opacity:1; transform:translateY(0);}
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://via.placeholder.com/130" alt="Foto Profil"/>
-    <h1>I am Muhammad Nabil Putra Ramadhan</h1>
-    <div class="typing"></div>
-  </header>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo"><strong>SamNaput</strong></div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Project</a>
+      <a href="#contact" class="btn-contact">Contact Me</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text reveal">
+      <h1>Hello Buds 👋<br> I am <span>Muhammad Nabil Putra Ramadhan</span></h1>
+      <div class="typing" id="typing"></div>
+      <p>Saya memiliki minat besar pada <span class="highlight">UI/UX Design</span> dan pengembangan aplikasi. 
+      Fokus saya adalah menciptakan solusi digital yang menarik, profesional, 
+      dan efektif untuk membantu pengguna.</p>
+      <button>About Me</button>
+    </div>
+    <div class="hero-img reveal">
+      <img src="https://picsum.photos/320/400?random=1" alt="hero-img">
+    </div>
+  </section>
 
   <!-- About -->
-  <section class="about">
+  <section class="about" id="about">
     <h2>About Me</h2>
-    <p>
-      Halo! Saya Nabil, seorang pelajar yang memiliki passion besar di bidang 
-      <b>UI/UX Design</b> dan <b>Pengembangan Aplikasi Web</b>.  
-      Saya suka menciptakan desain antarmuka yang menarik, sederhana, dan mudah digunakan, 
-      sekaligus membangun pengalaman digital yang memberikan nilai lebih bagi pengguna.  
-      Saya percaya bahwa teknologi bisa membawa dampak positif bagi masyarakat jika dirancang dengan tepat.
-    </p>
-  </section>
-
-  <!-- Tabs -->
-  <section class="tabs">
-    <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="stack">Teach Stack</button>
-      <button class="tab-btn" data-tab="projects">Proyek</button>
-      <button class="tab-btn" data-tab="certificates">Sertifikat</button>
-    </div>
-
-    <div class="tab-content">
-      <!-- Stack -->
-      <div id="stack" class="active">
-        <div class="tech-icons">
-          <i class="fab fa-html5"></i>
-          <i class="fab fa-css3-alt"></i>
-          <i class="fab fa-js"></i>
-          <i class="fab fa-php"></i>
-          <i class="fab fa-laravel"></i>
-          <i class="fab fa-react"></i>
-          <i class="fab fa-figma"></i>
-        </div>
-      </div>
-
-      <!-- Projects -->
-      <div id="projects">
-        <div class="projects">
-          <div class="project">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 1">
-            <h3>Website Penjualan Kue</h3>
-            <p>Web interaktif untuk jual beli kue dengan sistem pemesanan online dan desain modern.</p>
+    <div class="about-content reveal">
+      <img src="https://picsum.photos/220/300?random=2" alt="foto-nabil">
+      <div class="about-text">
+        <h3>Halo, Saya <span class="highlight">M Nabil Putra R</span></h3>
+        <p>Saya adalah pelajar SMK Telkom Sidoarjo jurusan SIJA dengan passion dalam dunia <span class="highlight">UI/UX Design</span> dan <span class="highlight">Front-End Development</span>. 
+        Saya bersemangat untuk terus belajar, berkreasi, dan membangun produk digital yang tidak hanya menarik secara visual, tetapi juga bermanfaat bagi pengguna.</p>
+        <div class="skills">
+          <div class="skill">
+            <span>UI/UX Design</span>
+            <div class="progress"><div style="width:90%"></div></div>
           </div>
-          <div class="project">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 2">
-            <h3>Aplikasi Finance</h3>
-            <p>Aplikasi pencatatan keuangan pribadi dengan fitur harian, mingguan, dan bulanan.</p>
+          <div class="skill">
+            <span>Front-End Development</span>
+            <div class="progress"><div style="width:80%"></div></div>
+          </div>
+          <div class="skill">
+            <span>Back-End Development</span>
+            <div class="progress"><div style="width:60%"></div></div>
           </div>
         </div>
-      </div>
-
-      <!-- Certificates -->
-      <div id="certificates">
-        <ul class="certificates">
-          <li>Sertifikat UI/UX Design – Digital Talent Program 2025</li>
-          <li>Sertifikat Front-End Development – Dicoding</li>
-          <li>Sertifikat Pelatihan Laravel – SMK Telkom Sidoarjo</li>
-        </ul>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Muhammad Nabil Putra Ramadhan</p>
-  </footer>
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <h2><span style="color:#9a6bff">PORTOFOLIO</span> SHOWCASE</h2>
+    <div class="tabs">
+      <button class="tab active" data-tab="stack">Teach Stack</button>
+      <button class="tab" data-tab="proyek">Proyek</button>
+      <button class="tab" data-tab="sertif">Sertifikat</button>
+    </div>
+
+    <!-- Teach Stack pakai icon -->
+    <div id="stack" class="tab-content active reveal">
+      <div class="card"><i class="fa-brands fa-html5"></i><h3>HTML5</h3></div>
+      <div class="card"><i class="fa-brands fa-css3-alt"></i><h3>CSS3</h3></div>
+      <div class="card"><i class="fa-brands fa-square-js"></i><h3>JavaScript</h3></div>
+      <div class="card"><i class="fa-brands fa-react"></i><h3>React</h3></div>
+      <div class="card"><i class="fa-brands fa-php"></i><h3>PHP</h3></div>
+      <div class="card"><i class="fa-brands fa-laravel"></i><h3>Laravel</h3></div>
+    </div>
+
+    <div id="proyek" class="tab-content reveal">
+      <div class="card"><h3>Website Penjualan Kue</h3><p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p></div>
+      <div class="card"><h3>Aplikasi Finance</h3><p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p></div>
+    </div>
+
+    <div id="sertif" class="tab-content reveal">
+      <div class="card"><h3>Sertifikat UI/UX</h3><p>Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</p></div>
+      <div class="card"><h3>Sertifikat Laravel</h3><p>Sertifikat pelatihan backend development dengan framework Laravel.</p></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>Silakan hubungi saya melalui media sosial berikut:</p>
+    <div class="socials">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+  </section>
 
   <script>
-    // Tabs
-    const tabBtns = document.querySelectorAll(".tab-btn");
-    const tabContents = document.querySelectorAll(".tab-content > div");
-
-    tabBtns.forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        tabBtns.forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        const target = btn.getAttribute("data-tab");
-
-        tabContents.forEach(c=>{
-          c.classList.remove("active");
-          if(c.id === target){ c.classList.add("active"); }
-        });
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        tabs.forEach(t=>t.classList.remove('active'));
+        contents.forEach(c=>c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
       });
     });
 
-    // Typing animation
-    const roles = ["UI/UX Designer", "Front-End Developer"];
+    // Scroll reveal
+    window.addEventListener('scroll', reveal);
+    function reveal(){
+      const reveals = document.querySelectorAll('.reveal');
+      for(let i=0;i<reveals.length;i++){
+        const windowHeight = window.innerHeight;
+        const revealTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 150;
+        if(revealTop < windowHeight - revealPoint){
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+
+    // Typing effect
+    const typingElement = document.getElementById("typing");
+    const roles = ["UI/UX Designer", "Front End Developer"];
     let roleIndex = 0;
     let charIndex = 0;
-    const typingEl = document.querySelector(".typing");
+    let currentRole = "";
+    let isDeleting = false;
 
     function type() {
-      if(charIndex < roles[roleIndex].length) {
-        typingEl.textContent += roles[roleIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(type,100);
+      currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typingElement.textContent = currentRole.substring(0, charIndex--);
       } else {
-        setTimeout(erase,1500);
+        typingElement.textContent = currentRole.substring(0, charIndex++);
+      }
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 200);
+      } else {
+        setTimeout(type, isDeleting ? 100 : 150);
       }
     }
-    function erase() {
-      if(charIndex > 0) {
-        typingEl.textContent = roles[roleIndex].substring(0,charIndex-1);
-        charIndex--;
-        setTimeout(erase,50);
-      } else {
-        roleIndex = (roleIndex+1)%roles.length;
-        setTimeout(type,200);
-      }
-    }
-    document.addEventListener("DOMContentLoaded",()=>{ type(); });
+    type();
   </script>
 </body>
 </html>

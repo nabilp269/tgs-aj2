@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Muhammad Nabil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: transparent;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #9a6bff;
+    }
+
+    .btn-contact {
+      padding: 8px 18px;
+      border: 2px solid #9a6bff;
+      border-radius: 25px;
+      transition: 0.4s;
+    }
+
+    .btn-contact:hover {
+      background: #9a6bff;
+      color: #fff;
+      box-shadow: 0 0 15px #9a6bff;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 150px 60px 80px;
+    }
+
+    .hero-text {
+      max-width: 50%;
+      animation: fadeInLeft 1s ease-in;
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .hero-text span {
+      color: #9a6bff;
+    }
+
+    .hero-text p {
+      margin: 20px 0;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .hero-text button {
+      padding: 10px 20px;
+      border: none;
+      background: #9a6bff;
+      color: #fff;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+
+    .hero-text button:hover {
+      box-shadow: 0 0 20px #9a6bff;
+      transform: scale(1.05);
+    }
+
+    .hero-img img {
+      width: 280px;
+      border-radius: 15px;
+      animation: float 3s infinite ease-in-out;
+    }
+
+    /* About */
+    .about {
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeInUp 1.2s ease-in;
+    }
+
+    .about h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #9a6bff;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-content img {
+      width: 200px;
+      border-radius: 20px;
+      border: 2px solid #9a6bff;
+      box-shadow: 0 0 20px #9a6bff80;
+      transition: 0.5s;
+    }
+
+    .about-content img:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .about-text {
+      max-width: 500px;
+      text-align: left;
+      color: #ccc;
+    }
+
+    /* Portfolio */
+    .portfolio {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .portfolio h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .tab {
+      background: transparent;
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: 2px solid #9a6bff;
+      cursor: pointer;
+      transition: 0.4s;
+      color: #fff;
+    }
+
+    .tab:hover, .tab.active {
+      background: #9a6bff;
+      box-shadow: 0 0 20px #9a6bff;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo"><strong>SamNaput</strong></div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Project</a>
+      <a href="#contact" class="btn-contact">Contact Me</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Hello Buds<br> I am <span>Muhammad Nabil Putra Ramadhan</span></h1>
+      <p>Saya memiliki minat besar pada UI/UX Design dan pengembangan aplikasi. Fokus saya adalah menciptakan solusi yang menarik, profesional, dan efektif.</p>
+      <button>About Me</button>
+    </div>
+    <div class="hero-img">
+      <img src="https://i.ibb.co/F0L3zmt/profile.png" alt="profile">
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="https://i.ibb.co/hRzQnQm/nabil.jpg" alt="foto-nabil">
+      <div class="about-text">
+        <h3>Halo, Saya M Nabil Putra R</h3>
+        <p>Saya Nabil, pelajar SMK Telkom Sidoarjo jurusan SIJA dengan minat pada UI/UX Design dan pengembangan aplikasi. Saya memiliki semangat belajar tinggi untuk menciptakan solusi digital yang efektif dan berorientasi pada pengalaman pengguna.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <h2><span style="color:#9a6bff">PORTOFOLIO</span> SHOWCASE</h2>
+    <div class="tabs">
+      <button class="tab active">Teach Stack</button>
+      <button class="tab">Proyek</button>
+      <button class="tab">Sertifikat</button>
+    </div>
+  </section>
+
+  <script>
+    // Tab switching
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

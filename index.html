@@ -62,23 +62,43 @@
       animation: float 3s infinite ease-in-out;
     }
 
+    .typing {
+      font-size:1.2rem;
+      color:#9a6bff;
+      border-right:3px solid #9a6bff;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+
     /* About */
     .about {text-align:center; padding:100px 20px;}
     .about h2 {font-size:2rem; margin-bottom:40px; color:#9a6bff;}
     .about-content {
-      max-width:950px; margin:auto; display:flex; gap:40px;
+      max-width:1000px; margin:auto; display:flex; gap:40px;
       align-items:center; justify-content:center; flex-wrap:wrap;
-      background:#111; padding:30px; border-radius:20px;
-      box-shadow:0 0 20px #9a6bff55;
+      background:#111; padding:40px; border-radius:20px;
+      box-shadow:0 0 25px #9a6bff55;
     }
     .about-content img {
-      width:220px; border-radius:20px;
-      border:2px solid #9a6bff; box-shadow:0 0 20px #9a6bff80;
+      width:240px; border-radius:20px;
+      border:2px solid #9a6bff; box-shadow:0 0 25px #9a6bff80;
       transition:0.5s;
     }
     .about-content img:hover {transform:scale(1.05) rotate(-2deg);}
-    .about-text {max-width:550px; text-align:left; color:#ccc;}
+    .about-text {max-width:600px; text-align:left; color:#ccc;}
     .about-text h3 {margin-bottom:15px; color:#fff;}
+    .highlight {color:#9a6bff; font-weight:600;}
+
+    .skills {margin-top:20px;}
+    .skill {margin-bottom:15px;}
+    .skill span {display:block; margin-bottom:6px; color:#fff;}
+    .progress {
+      background:#222; height:10px; border-radius:8px;
+      overflow:hidden;
+    }
+    .progress div {
+      height:10px; background:#9a6bff;
+    }
 
     /* Portfolio */
     .portfolio {padding:100px 20px; text-align:center;}
@@ -98,11 +118,11 @@
 
     .card {
       background:#111; padding:20px; border-radius:15px;
-      box-shadow:0 0 15px #000; transition:0.4s; text-align:left;
+      box-shadow:0 0 15px #000; transition:0.4s; text-align:center;
     }
     .card:hover {transform:translateY(-8px); box-shadow:0 0 25px #9a6bff80;}
-    .card img {width:100%; border-radius:10px; margin-bottom:12px;}
-    .card h3 {color:#9a6bff; margin-bottom:8px;}
+    .card i {font-size:3rem; margin-bottom:12px; color:#9a6bff;}
+    .card h3 {color:#fff; margin-bottom:8px;}
 
     /* Contact */
     .contact {padding:100px 20px; text-align:center;}
@@ -121,8 +141,6 @@
       from{opacity:0; transform:translateY(40px);}
       to{opacity:1; transform:translateY(0);}
     }
-
-    /* Scroll Reveal */
     .reveal {opacity:0; transform:translateY(50px); transition:1s;}
     .reveal.active {opacity:1; transform:translateY(0);}
   </style>
@@ -144,7 +162,8 @@
   <section class="hero">
     <div class="hero-text reveal">
       <h1>Hello Buds 👋<br> I am <span>Muhammad Nabil Putra Ramadhan</span></h1>
-      <p>Saya memiliki minat besar pada UI/UX Design dan pengembangan aplikasi. 
+      <div class="typing" id="typing"></div>
+      <p>Saya memiliki minat besar pada <span class="highlight">UI/UX Design</span> dan pengembangan aplikasi. 
       Fokus saya adalah menciptakan solusi digital yang menarik, profesional, 
       dan efektif untuk membantu pengguna.</p>
       <button>About Me</button>
@@ -160,12 +179,23 @@
     <div class="about-content reveal">
       <img src="https://picsum.photos/220/300?random=2" alt="foto-nabil">
       <div class="about-text">
-        <h3>Halo, Saya M Nabil Putra R</h3>
-        <p>Saya Nabil, pelajar SMK Telkom Sidoarjo jurusan SIJA dengan minat pada 
-        UI/UX Design dan pengembangan aplikasi. Saya bersemangat untuk terus belajar 
-        dan mengembangkan keterampilan desain serta pemrograman. Dengan kombinasi 
-        kreativitas, keterampilan teknis, dan pengalaman, saya ingin berkontribusi 
-        menciptakan solusi digital inovatif yang bermanfaat untuk banyak orang.</p>
+        <h3>Halo, Saya <span class="highlight">M Nabil Putra R</span></h3>
+        <p>Saya adalah pelajar SMK Telkom Sidoarjo jurusan SIJA dengan passion dalam dunia <span class="highlight">UI/UX Design</span> dan <span class="highlight">Front-End Development</span>. 
+        Saya bersemangat untuk terus belajar, berkreasi, dan membangun produk digital yang tidak hanya menarik secara visual, tetapi juga bermanfaat bagi pengguna.</p>
+        <div class="skills">
+          <div class="skill">
+            <span>UI/UX Design</span>
+            <div class="progress"><div style="width:90%"></div></div>
+          </div>
+          <div class="skill">
+            <span>Front-End Development</span>
+            <div class="progress"><div style="width:80%"></div></div>
+          </div>
+          <div class="skill">
+            <span>Back-End Development</span>
+            <div class="progress"><div style="width:60%"></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -179,20 +209,24 @@
       <button class="tab" data-tab="sertif">Sertifikat</button>
     </div>
 
+    <!-- Teach Stack pakai icon -->
     <div id="stack" class="tab-content active reveal">
-      <div class="card"><img src="https://picsum.photos/400/250?random=3"><h3>HTML, CSS, JS</h3><p>Pemahaman dasar frontend development untuk membangun website interaktif.</p></div>
-      <div class="card"><img src="https://picsum.photos/400/250?random=4"><h3>React & Tailwind</h3><p>Membuat UI modern dan responsif dengan framework populer.</p></div>
-      <div class="card"><img src="https://picsum.photos/400/250?random=5"><h3>PHP & Laravel</h3><p>Mengembangkan backend dengan struktur MVC yang kuat.</p></div>
+      <div class="card"><i class="fa-brands fa-html5"></i><h3>HTML5</h3></div>
+      <div class="card"><i class="fa-brands fa-css3-alt"></i><h3>CSS3</h3></div>
+      <div class="card"><i class="fa-brands fa-square-js"></i><h3>JavaScript</h3></div>
+      <div class="card"><i class="fa-brands fa-react"></i><h3>React</h3></div>
+      <div class="card"><i class="fa-brands fa-php"></i><h3>PHP</h3></div>
+      <div class="card"><i class="fa-brands fa-laravel"></i><h3>Laravel</h3></div>
     </div>
 
     <div id="proyek" class="tab-content reveal">
-      <div class="card"><img src="https://picsum.photos/400/250?random=6"><h3>Website Penjualan Kue</h3><p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p></div>
-      <div class="card"><img src="https://picsum.photos/400/250?random=7"><h3>Aplikasi Finance</h3><p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p></div>
+      <div class="card"><h3>Website Penjualan Kue</h3><p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p></div>
+      <div class="card"><h3>Aplikasi Finance</h3><p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p></div>
     </div>
 
     <div id="sertif" class="tab-content reveal">
-      <div class="card"><img src="https://picsum.photos/400/250?random=8"><h3>Sertifikat UI/UX</h3><p>Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</p></div>
-      <div class="card"><img src="https://picsum.photos/400/250?random=9"><h3>Sertifikat Laravel</h3><p>Sertifikat pelatihan backend development dengan framework Laravel.</p></div>
+      <div class="card"><h3>Sertifikat UI/UX</h3><p>Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</p></div>
+      <div class="card"><h3>Sertifikat Laravel</h3><p>Sertifikat pelatihan backend development dengan framework Laravel.</p></div>
     </div>
   </section>
 
@@ -233,6 +267,35 @@
         }
       }
     }
+
+    // Typing effect
+    const typingElement = document.getElementById("typing");
+    const roles = ["UI/UX Designer", "Front End Developer"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let currentRole = "";
+    let isDeleting = false;
+
+    function type() {
+      currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typingElement.textContent = currentRole.substring(0, charIndex--);
+      } else {
+        typingElement.textContent = currentRole.substring(0, charIndex++);
+      }
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 200);
+      } else {
+        setTimeout(type, isDeleting ? 100 : 150);
+      }
+    }
+    type();
   </script>
 </body>
 </html>

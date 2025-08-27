@@ -98,28 +98,38 @@
 
     .card {
       background:#111; padding:20px; border-radius:15px;
-      box-shadow:0 0 15px #000; transition:0.4s; text-align:left;
+      box-shadow:0 0 15px #000; transition:0.4s; text-align:center;
     }
     .card:hover {transform:translateY(-8px); box-shadow:0 0 25px #9a6bff80;}
     .card img {width:100%; border-radius:10px; margin-bottom:12px;}
     .card h3 {color:#9a6bff; margin-bottom:8px;}
 
-    /* Tech Icons */
+    /* Teach Stack Icons */
     .tech-icons {
+      display:flex; justify-content:center; gap:25px; flex-wrap:wrap;
       font-size:3rem; color:#9a6bff;
-      display:flex; flex-wrap:wrap; justify-content:center; gap:30px;
     }
     .tech-icons i {transition:0.3s;}
-    .tech-icons i:hover {color:#fff; transform:scale(1.2);}
+    .tech-icons i:hover {transform:scale(1.2); color:#fff;}
 
     /* Contact */
     .contact {padding:100px 20px; text-align:center;}
-    .contact h2 {color:#9a6bff; margin-bottom:20px;}
-    .contact p {color:#bbb; margin-bottom:20px;}
-    .socials a {
-      margin:0 15px; font-size:1.8rem; color:#fff; transition:0.3s;
+    .contact h2 {color:#9a6bff; margin-bottom:20px; font-size:2rem;}
+    .contact p {color:#bbb; margin-bottom:30px;}
+    .socials {
+      display:flex; justify-content:center; gap:25px; flex-wrap:wrap;
     }
-    .socials a:hover {color:#9a6bff; transform:translateY(-5px);}
+    .socials a {
+      width:60px; height:60px; border-radius:50%;
+      background:#111; display:flex; align-items:center; justify-content:center;
+      font-size:1.5rem; color:#fff; transition:0.4s;
+      box-shadow:0 0 10px #000;
+    }
+    .socials a:hover {
+      background:#9a6bff; color:#fff;
+      transform:translateY(-8px) scale(1.1);
+      box-shadow:0 0 20px #9a6bff;
+    }
 
     /* Animations */
     @keyframes float {
@@ -178,7 +188,7 @@
     </div>
   </section>
 
-  <!-- Portfolio -->
+   <!-- Portfolio -->
   <section class="portfolio" id="portfolio">
     <h2><span style="color:#9a6bff">PORTOFOLIO</span> SHOWCASE</h2>
     <div class="tabs">
@@ -188,25 +198,27 @@
     </div>
 
     <!-- Teach Stack -->
-    <div id="stack" class="tab-content active reveal">
-      <div class="card"><div class="tech-icons">
-        <i class="fab fa-html5" title="HTML5"></i>
-        <i class="fab fa-css3-alt" title="CSS3"></i>
-        <i class="fab fa-js" title="JavaScript"></i>
-        <i class="fab fa-react" title="React"></i>
-        <i class="fab fa-php" title="PHP"></i>
-        <i class="fab fa-laravel" title="Laravel"></i>
-      </div></div>
+    <div id="stack" class="tab-content active">
+      <div class="card">
+        <div class="tech-icons">
+          <i class="fab fa-html5" title="HTML5"></i>
+          <i class="fab fa-css3-alt" title="CSS3"></i>
+          <i class="fab fa-js" title="JavaScript"></i>
+          <i class="fab fa-react" title="React"></i>
+          <i class="fab fa-php" title="PHP"></i>
+          <i class="fab fa-laravel" title="Laravel"></i>
+        </div>
+      </div>
     </div>
 
     <!-- Proyek -->
-    <div id="proyek" class="tab-content reveal">
+    <div id="proyek" class="tab-content">
       <div class="card"><img src="https://picsum.photos/400/250?random=6"><h3>Website Penjualan Kue</h3><p>Aplikasi web untuk mempermudah pemesanan dan penjualan kue online.</p></div>
       <div class="card"><img src="https://picsum.photos/400/250?random=7"><h3>Aplikasi Finance</h3><p>Sistem pencatatan keuangan pribadi dengan tampilan sederhana dan efisien.</p></div>
     </div>
 
     <!-- Sertifikat -->
-    <div id="sertif" class="tab-content reveal">
+    <div id="sertif" class="tab-content">
       <div class="card"><img src="https://picsum.photos/400/250?random=8"><h3>Sertifikat UI/UX</h3><p>Penghargaan atas partisipasi dan penyelesaian kursus desain antarmuka.</p></div>
       <div class="card"><img src="https://picsum.photos/400/250?random=9"><h3>Sertifikat Laravel</h3><p>Sertifikat pelatihan backend development dengan framework Laravel.</p></div>
     </div>
@@ -236,20 +248,6 @@
         document.getElementById(tab.dataset.tab).classList.add('active');
       });
     });
-
-    // Scroll reveal
-    window.addEventListener('scroll', reveal);
-    function reveal(){
-      const reveals = document.querySelectorAll('.reveal');
-      for(let i=0;i<reveals.length;i++){
-        const windowHeight = window.innerHeight;
-        const revealTop = reveals[i].getBoundingClientRect().top;
-        const revealPoint = 150;
-        if(revealTop < windowHeight - revealPoint){
-          reveals[i].classList.add('active');
-        }
-      }
-    }
   </script>
 </body>
 </html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Delivery Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      background: #ff4d4d;
+      color: #fff;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #000;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80") no-repeat center center/cover;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 12px 25px;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background: #e63e3e;
+    }
+
+    /* Menu Section */
+    .menu {
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .menu h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #ff4d4d;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .menu-item .content {
+      padding: 15px;
+    }
+
+    .menu-item h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .menu-item p {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #666;
+    }
+
+    .menu-item button {
+      padding: 8px 15px;
+      border: none;
+      background: #ff4d4d;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .menu-item button:hover {
+      background: #e63e3e;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <h1>Foodie</h1>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <h2>Delicious Food, Delivered Fast</h2>
+    <p>Order your favorite meals and enjoy at home</p>
+    <button onclick="alert('Order Now Clicked!')">Order Now</button>
+  </section>
+
+  <!-- Menu -->
+  <section class="menu" id="menu">
+    <h2>Our Popular Dishes</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1606756790138-94a7b3e7e77a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pizza">
+        <div class="content">
+          <h3>Cheese Pizza</h3>
+          <p>Hot and cheesy pizza topped with fresh ingredients.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1604909053197-9e0e45f3a3c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Burger">
+        <div class="content">
+          <h3>Beef Burger</h3>
+          <p>Juicy beef patty with fresh lettuce and tomatoes.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pasta">
+        <div class="content">
+          <h3>Italian Pasta</h3>
+          <p>Delicious creamy pasta with authentic Italian taste.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sushi">
+        <div class="content">
+          <h3>Sushi Platter</h3>
+          <p>Fresh and tasty sushi rolls with premium fish.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>© 2025 Foodie | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>

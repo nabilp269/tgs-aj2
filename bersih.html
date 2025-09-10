@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERSIHKU Environmental App - Project Detail</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00d4ff 0%, #1a1a2e 50%, #43e97b 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #43e97b, #00d4ff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(67, 233, 123, 0.3);
+        }
+        .project-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #43e97b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .project-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(67, 233, 123, 0.2);
+        }
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .project-details {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .project-description {
+            background: rgba(255,255,255,0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .project-info {
+            background: rgba(255,255,255,0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+        .info-label {
+            color: #43e97b;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tech-tag {
+            background: rgba(67, 233, 123, 0.2);
+            color: #43e97b;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        h2 {
+            color: #43e97b;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 900px) {
+            .container {padding: 1rem;}
+            .project-details {grid-template-columns: 1fr;}
+            .project-title {font-size: 2rem;}
+            .project-image {max-width: 100%;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Kembali ke Portfolio</a>
+        <div class="project-header">
+            <h1 class="project-title">BERSIHKU Environmental App</h1>
+            <p class="project-subtitle">Aplikasi Mobile untuk Manajemen Sampah & Lingkungan</p>
+        </div>
+        <div class="project-image">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-10%20100409-cQLTtj8peBbWtBmAxLeDy1AY7qoZyB.png" alt="BERSIHKU App Design">
+        </div>
+        <div class="project-details">
+            <div class="project-description">
+                <h2>Deskripsi Proyek</h2>
+                <p>BERSIHKU adalah aplikasi mobile yang membantu masyarakat dalam mengelola sampah dan menjaga lingkungan. Dengan fitur tracking, edukasi, dan gamifikasi, aplikasi ini mendorong perilaku ramah lingkungan secara menyenangkan dan interaktif.</p>
+                <h3>Fitur Utama:</h3>
+                <ul>
+                    <li>Tracking pengumpulan dan pemilahan sampah</li>
+                    <li>Leaderboard & gamifikasi untuk motivasi pengguna</li>
+                    <li>Konten edukasi lingkungan dan tips daur ulang</li>
+                    <li>Notifikasi pengingat jadwal pengangkutan sampah</li>
+                    <li>Desain UI/UX ramah pengguna dan responsif</li>
+                </ul>
+                <h3>Proses Design:</h3>
+                <p>Proses dimulai dengan riset perilaku pengguna dan studi dampak lingkungan. Wireframe dan prototype dikembangkan menggunakan Figma, lalu diuji secara iteratif untuk memastikan kemudahan penggunaan dan efektivitas fitur gamifikasi.</p>
+            </div>
+            <div class="project-info">
+                <div class="info-item">
+                    <div class="info-label">Klien</div>
+                    <p>Bersihku Community</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Durasi</div>
+                    <p>2 Bulan</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Role</div>
+                    <p>UI/UX Designer & Mobile App Developer</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Teknologi</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Figma</span>
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Gamification</span>
+                        <span class="tech-tag">User Research</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Hasil</div>
+                    <p>Peningkatan partisipasi masyarakat dalam pengelolaan sampah dan edukasi lingkungan secara digital.</p>
+                </div>
+            </div>

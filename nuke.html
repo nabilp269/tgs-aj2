@@ -1,142 +1,260 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nuket Learning Platform</title>
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0a0f1c;
-      color: #f0f4f8;
-      line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
-
-    header h1 {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-
-    .project-hero {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .project-hero img {
-      max-width: 500px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-    }
-
-    .project-info {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .project-info h2 {
-      color: #00c6ff;
-      margin-bottom: 15px;
-    }
-
-    .project-info p {
-      margin-bottom: 20px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .tag {
-      background: #1c2230;
-      color: #00c6ff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      transition: 0.3s;
-    }
-
-    .tag:hover {
-      background: #0072ff;
-      color: #fff;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #00c6ff;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #0072ff;
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      padding: 20px;
-      background: #0e1628;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuket Learning Platform - Portfolio Detail</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .floating-shape {
+            position: absolute;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            opacity: 0.12;
+            animation: float 6s ease-in-out infinite;
+            filter: blur(2px);
+        }
+        .floating-shape:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-shape:nth-child(2) { width: 120px; height: 120px; top: 60%; right: 10%; animation-delay: 2s; }
+        .floating-shape:nth-child(3) { width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 4s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.7);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 32px 0 rgba(31,38,135,0.17);
+            transition: all 0.3s ease;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        .logo {
+            font-size: 1.7rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .container {
+            max-width: 900px;
+            margin: 120px auto 0 auto;
+            background: linear-gradient(120deg, rgba(15,15,35,0.7) 0%, rgba(0,212,255,0.07) 100%);
+            border-radius: 24px;
+            box-shadow: 0 4px 32px rgba(0,212,255,0.07);
+            padding: 3rem 2rem;
+        }
+        .project-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .project-image {
+            width: 100%;
+            height: 320px;
+            background: #1a1a2e;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.17);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-desc {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            color: #eaf6fb;
+        }
+        .project-section-title {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 0.7rem;
+            margin-top: 2rem;
+        }
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .project-link {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(90deg, #00d4ff 0%, #0099cc 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            box-shadow: 0 4px 24px rgba(0,212,255,0.15);
+            border: none;
+            font-weight: 600;
+        }
+        .project-link:hover {
+            transform: scale(1.07) translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,212,255,0.25);
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #00d4ff;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #fff;
+        }
+        footer {
+            background: linear-gradient(90deg, #16213e 0%, #0099cc 100%);
+            color: #fff;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            box-shadow: 0 -4px 32px rgba(0,212,255,0.07);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+            .project-image {
+                height: 180px;
+            }
+            .project-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Nuket Learning Platform</h1>
-  </header>
-
-  <div class="container">
-    <div class="project-hero">
-      <img src="nuket-preview.png" alt="Preview Nuket Platform">
-      <div class="project-info">
-        <h2>Platform Pembelajaran Online</h2>
-        <p>
-          Nuket adalah platform pembelajaran online yang komprehensif dengan sistem manajemen konten canggih dan interface yang user-friendly. 
-          Dibuat untuk mendukung pengalaman belajar modern dengan fitur interaktif dan desain profesional.
-        </p>
-        <div class="tags">
-          <span class="tag">UI/UX Design</span>
-          <span class="tag">Figma</span>
-          <span class="tag">Prototyping</span>
-          <span class="tag">User Research</span>
-        </div>
-        <a href="index.html" class="btn">Kembali ke Portfolio</a>
-      </div>
+    <div class="bg-animation">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
     </div>
-  </div>
-
-  <footer>
-    &copy; 2025 Nuket Project - Dibuat oleh Nabil
-  </footer>
-</body>
-</html>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <h1 class="project-title">Nuket Learning Platform</h1>
+            <div class="project-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-10%20100518-52CZmPSY68apYgwNsgpOQaA1GQo1VZ.png" alt="Nuket Learning Platform Screenshot">
+            </div>
+            <div class="project-desc">
+                Nuket adalah platform pembelajaran online yang dirancang untuk memberikan pengalaman belajar yang komprehensif dan interaktif. Dengan sistem manajemen konten yang canggih, Nuket memudahkan pengajar dan siswa dalam mengakses materi, mengikuti kelas, serta melakukan evaluasi secara digital.
+            </div>
+            <div class="project-section-title">Fitur Utama</div>
+            <ul>
+                <li>Dashboard interaktif untuk pengajar dan siswa</li>
+                <li>Manajemen materi dan tugas secara digital</li>
+                <li>Quiz dan evaluasi otomatis</li>
+                <li>Progress tracking & statistik belajar</li>
+                <li>Desain UI/UX modern dan responsif</li>
+            </ul>
+            <div class="project-section-title">Teknologi & Tools</div>
+            <div class="project-tech">
+                <span class="tech-tag">Figma</span>
+                <span class="tech-tag">UI/UX Design</span>
+                <span class="tech-tag">Prototyping</span>
+                <span class="tech-tag">User Research</span>
+            </div>
+            <div class="project-links">
+                <a href="https://www.figma.com/proto/DcHF6DJXcf98cmNbvpVQC5/Lomba-UI?page-id=503%3A84&node-id=657-1484&p=f&viewport=321%2C27%2C0.04&t=nSjh5UTq67hA3lH8-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=657%3A1448" class="project-link" target="_blank">Lihat Prototype Figma</a>
+                <a href="index.html#projects" class="project-link">Kembali ke Portfolio</a>
+            </div>
+            <a href="index.html#projects" class="back-link">&larr; Kembali ke daftar project</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Portfolio. Dibuat dengan ❤️ untuk

@@ -1,109 +1,396 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pujabook - Project Detail</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --secondary: #ec4899;
+            --accent: #fbbf24;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a0033 0%, #0f0f23 50%, #9a6bff 100%);
-            color: #ffffff;
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .container {
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.3;
+            animation: float-blob 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            top: -20%;
+            left: -15%;
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -15%;
+            width: 700px;
+            height: 700px;
+            background: var(--secondary);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: -10s;
+        }
+
+        .blob-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation-delay: -5s;
+        }
+
+        @keyframes float-blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 50px) scale(1.1);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .back-button {
-            display: inline-block;
-            margin-bottom: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, #9a6bff, #00eaff);
-            color: #ffffff;
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 50px;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(154, 107, 255, 0.4);
+        .back-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateX(-5px);
         }
 
-        .project-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        .project-title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #9a6bff);
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 2rem 4rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .project-subtitle {
+        .hero-subtitle {
             font-size: 1.2rem;
-            opacity: 0.9;
+            color: var(--text-gray);
             margin-bottom: 2rem;
         }
 
-        .project-image {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(154, 107, 255, 0.3);
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
-        .project-image img {
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .image-wrapper img {
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 1.5rem;
         }
 
-        .project-details {
+        .image-glow {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 100px;
+            background: var(--primary);
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 3rem;
-            margin-bottom: 3rem;
         }
 
-        .project-description {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+        /* Description Card */
+        .description-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
         }
 
-        .project-info {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .info-item {
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .description-card p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+
+        .features-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-gray);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .features-list li i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+
+        /* Info Sidebar */
+        .info-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-3px);
         }
 
         .info-label {
-            color: #9a6bff;
-            font-weight: bold;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            font-weight: 600;
             margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         .tech-tags {
@@ -113,98 +400,494 @@
         }
 
         .tech-tag {
-            background: rgba(154, 107, 255, 0.2);
-            color: #9a6bff;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: var(--primary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        h2 {
-            color: #9a6bff;
-            margin-bottom: 1rem;
+        .tech-tag:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
         }
 
-        h3 {
-            color: #ffffff;
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(236, 72, 153, 0.05));
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 5rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .process-header h2 {
+            font-size: 2rem;
             margin-bottom: 0.5rem;
         }
 
-        @media (max-width: 768px) {
-            .project-details {
+        .process-header p {
+            color: var(--text-gray);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -1rem;
+            width: calc(100% - 80px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0.3;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .process-step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Results Section */
+        .results-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .results-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .results-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .results-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .results-card>p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 5rem;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-meta {
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .project-title {
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero-title {
                 font-size: 2rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .description-card {
+                padding: 1.5rem;
+            }
+
+            .results-card {
+                padding: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">← Kembali ke Portfolio</a>
-        
-        <div class="project-header">
-            <h1 class="project-title">Pujabook</h1>
-            <p class="project-subtitle">Website Pemesanan & Penjualan Kue Online</p>
-        </div>
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
-        <div class="project-image">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-10%20100658-eeoaQsphQ1oNMzWGdbfxLyPVwDc2kV.png" alt="Pujabook Website Design">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="ri-arrow-left-line"></i> Kembali
+            </a>
+            <div class="project-badge">
+                <i class="ri-cake-3-line"></i> E-commerce
+            </div>
         </div>
+    </nav>
 
-        <div class="project-details">
-            <div class="project-description">
-                <h2>Deskripsi Proyek</h2>
-                <p>Pujabook adalah website yang memudahkan pelanggan untuk memesan dan membeli kue secara online. Dengan tampilan yang modern dan navigasi yang mudah, pengguna dapat memilih berbagai jenis kue, melakukan pemesanan, dan pembayaran secara seamless.</p>
-                
-                <h3>Fitur Utama:</h3>
-                <ul>
-                    <li>Katalog kue lengkap dengan foto dan deskripsi</li>
-                    <li>Sistem pemesanan online yang mudah digunakan</li>
-                    <li>Pembayaran digital terintegrasi</li>
-                    <li>Notifikasi status pesanan secara real-time</li>
-                    <li>Desain responsif untuk desktop & mobile</li>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="category-badge">
+                    <i class="ri-shopping-bag-line"></i> Food Delivery
+                </div>
+                <h1 class="hero-title">Pujabook</h1>
+                <p class="hero-subtitle">Website pemesanan dan penjualan kue online dengan tampilan modern, navigasi
+                    mudah, dan sistem pembayaran yang seamless.</p>
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <i class="ri-building-line"></i>
+                        <span>Pujabook Bakery</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-calendar-line"></i>
+                        <span>2 Bulan</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-user-star-line"></i>
+                        <span>UI/UX & Frontend Dev</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="image-wrapper">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-09-10%20100658-eeoaQsphQ1oNMzWGdbfxLyPVwDc2kV.png"
+                        alt="Pujabook Website Design">
+                </div>
+                <div class="image-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="section-grid">
+            <div class="description-card" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="ri-file-text-line"></i> Deskripsi Proyek
+                </h2>
+                <p>Pujabook adalah website yang memudahkan pelanggan untuk memesan dan membeli kue secara online. Dengan
+                    tampilan yang modern dan navigasi yang mudah, pengguna dapat memilih berbagai jenis kue, melakukan
+                    pemesanan, dan pembayaran secara seamless.</p>
+
+                <h3 class="features-title">Fitur Utama:</h3>
+                <ul class="features-list">
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        Katalog kue lengkap dengan foto dan deskripsi
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        Sistem pemesanan online yang mudah digunakan
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        Pembayaran digital terintegrasi
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        Notifikasi status pesanan secara real-time
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        Desain responsif untuk desktop & mobile
+                    </li>
                 </ul>
-
-                <h3>Proses Design:</h3>
-                <p>Proses dimulai dengan riset kebutuhan pelanggan dan analisis kompetitor. Wireframe dan prototype dibuat menggunakan Figma, lalu dilakukan pengujian usability untuk memastikan pengalaman pengguna yang optimal. Desain akhir mengutamakan kemudahan navigasi dan visual yang menarik.</p>
             </div>
 
-            <div class="project-info">
-                <div class="info-item">
+            <div class="info-sidebar">
+                <div class="info-card" data-aos="fade-left" data-aos-delay="100">
                     <div class="info-label">Klien</div>
-                    <p>Pujabook Bakery</p>
+                    <div class="info-value">Pujabook Bakery</div>
                 </div>
-
-                <div class="info-item">
-                    <div class="info-label">Durasi</div>
-                    <p>2 Bulan</p>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="150">
+                    <div class="info-label">Durasi Proyek</div>
+                    <div class="info-value">2 Bulan</div>
                 </div>
-
-                <div class="info-item">
+                <div class="info-card" data-aos="fade-left" data-aos-delay="200">
                     <div class="info-label">Role</div>
-                    <p>UI/UX Designer & Frontend Developer</p>
+                    <div class="info-value">UI/UX Designer & Frontend Developer</div>
                 </div>
-
-                <div class="info-item">
+                <div class="info-card" data-aos="fade-left" data-aos-delay="250">
                     <div class="info-label">Teknologi</div>
                     <div class="tech-tags">
                         <span class="tech-tag">Figma</span>
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Responsive Design</span>
                     </div>
-                </div>
-
-                <div class="info-item">
-                    <div class="info-label">Hasil</div>
-                    <p>Peningkatan penjualan online sebesar 30% dan feedback positif dari pelanggan terkait kemudahan pemesanan.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="process-container">
+            <div class="process-header" data-aos="fade-up">
+                <h2>Design Process</h2>
+                <p>Proses pengembangan dari riset hingga implementasi</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+                    <div class="step-number">1</div>
+                    <h3>Research</h3>
+                    <p>Riset kebutuhan pelanggan & analisis kompetitor</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <h3>Wireframe</h3>
+                    <p>Sketsa layout dan user flow</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <h3>Design</h3>
+                    <p>High-fidelity mockup dengan Figma</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">4</div>
+                    <h3>Development</h3>
+                    <p>Implementasi frontend responsive</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="results-card" data-aos="zoom-in">
+            <div class="results-icon">
+                <i class="ri-trophy-line"></i>
+            </div>
+            <h2>Hasil Proyek</h2>
+            <p>Peningkatan penjualan online dan feedback positif dari pelanggan terkait kemudahan pemesanan.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">30%</span>
+                    <span class="stat-label">Peningkatan Penjualan Online</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Customer Satisfaction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2x</span>
+                    <span class="stat-label">Faster Checkout</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-aos="fade-up">
+        <div class="cta-buttons">
+            <a href="index.html" class="btn btn-primary">
+                <i class="ri-arrow-left-line"></i> Kembali ke Portfolio
+            </a>
+            <a href="#" class="btn btn-outline">
+                <i class="ri-external-link-line"></i> Lihat Website
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Portfolio. Project Detail - Pujabook</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 700,
+            easing: 'ease-out-cubic',
+        });
+    </script>
 </body>
+
 </html>

@@ -14,7 +14,7 @@
         rel="stylesheet">
 
     <!-- Remix Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet ">
 
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -445,39 +445,117 @@
             color: var(--text-gray);
         }
 
+        .skills-section {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+        }
+
         .skills-section h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .skills-section h3 i {
             color: var(--primary);
         }
 
-        .skill-tags {
+        .skills-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .skill-tag {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            transition: all 0.3s ease;
+        .skill-item {
+            position: relative;
         }
 
-        .skill-tag:hover {
-            border-color: var(--primary);
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-name i {
+            font-size: 1.1rem;
+        }
+
+        .skill-name i.ri-figma-fill {
+            color: #F24E1E;
+        }
+
+        .skill-name i.ri-palette-fill {
+            color: #A855F7;
+        }
+
+        .skill-name i.ri-html5-fill {
+            color: #E34F26;
+        }
+
+        .skill-name i.ri-javascript-fill {
+            color: #F7DF1E;
+        }
+
+        .skill-name i.ri-reactjs-line {
+            color: #61DAFB;
+        }
+
+        .skill-percent {
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--primary);
-            transform: translateY(-2px);
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 1.5s ease-in-out;
+            position: relative;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         /* Portfolio Section - Tabs */
@@ -709,9 +787,13 @@
         }
 
         /* Contact Section */
+        #contact {
+            position: relative;
+        }
+
         .contact-box {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
-            border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.98));
+            border: 1px solid transparent;
             border-radius: 2rem;
             padding: 4rem;
             text-align: center;
@@ -722,66 +804,299 @@
         .contact-box::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.15), transparent 70%);
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary));
+            border-radius: 2rem;
+            z-index: -1;
+            animation: rotate-border 4s linear infinite;
+            background-size: 200% 200%;
+        }
+
+        .contact-box::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.99));
+            border-radius: calc(2rem - 2px);
+            z-index: -1;
+        }
+
+        @keyframes rotate-border {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .contact-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
             pointer-events: none;
         }
 
-        .contact-box h2 {
-            font-size: 2.2rem;
+        .contact-particles span {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float-particle 8s infinite ease-in-out;
+        }
+
+        .contact-particles span:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .contact-particles span:nth-child(2) {
+            left: 80%;
+            top: 30%;
+            animation-delay: 1s;
+        }
+
+        .contact-particles span:nth-child(3) {
+            left: 20%;
+            top: 70%;
+            animation-delay: 2s;
+        }
+
+        .contact-particles span:nth-child(4) {
+            left: 70%;
+            top: 80%;
+            animation-delay: 3s;
+        }
+
+        .contact-particles span:nth-child(5) {
+            left: 50%;
+            top: 10%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float-particle {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(20px, -30px) scale(1.5);
+                opacity: 0.6;
+            }
+        }
+
+        .contact-header {
+            margin-bottom: 3rem;
+        }
+
+        .contact-header .emoji {
+            font-size: 3rem;
             margin-bottom: 1rem;
+            display: block;
+            animation: wave 2s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(20deg);
+            }
+
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        .contact-box h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .contact-box>p {
             color: var(--text-gray);
-            max-width: 500px;
-            margin: 0 auto 2.5rem;
+            max-width: 550px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .contact-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .contact-card {
             background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 1rem;
-            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             color: inherit;
             display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
         }
 
         .contact-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.3);
         }
 
         .contact-icon {
-            width: 55px;
-            height: 55px;
-            background: rgba(6, 182, 212, 0.15);
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.4rem;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .contact-icon::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-card:hover .contact-icon::after {
+            opacity: 0.3;
+            filter: blur(10px);
         }
 
         .contact-card h4 {
-            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .contact-card p {
             color: var(--text-gray);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover p {
+            color: var(--primary);
+        }
+
+        .contact-cta {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .contact-cta p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .contact-availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            color: #10B981;
+            font-weight: 600;
             font-size: 0.9rem;
+        }
+
+        .contact-availability::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #10B981;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                padding: 2rem;
+            }
+
+            .contact-box h2 {
+                font-size: 2rem;
+            }
         }
 
         /* Footer */
@@ -903,7 +1218,7 @@
             </div>
 
             <span class="greeting">👋 Selamat Datang</span>
-            <h1>Halo, Muhammad Nabil Putra Ramadhan</h1>
+            <h1>Halo I'M, Nabil Putra</h1>
 
             <div class="typing-wrapper">
                 <span class="typing-text" id="typing-text"></span><span class="cursor"></span>
@@ -933,8 +1248,8 @@
         <div class="about-grid">
             <div class="about-text" data-aos="fade-right">
                 <p>Saya adalah seorang UI/UX Designer dan Frontend Developer dengan passion yang mendalam untuk
-                    menciptakan pengalaman digital yang luar biasa. Dengan pengalaman lebih dari 3 tahun di industri
-                    teknologi, saya telah mengembangkan keahlian dalam merancang interface yang tidak hanya indah secara
+                    menciptakan pengalaman digital yang luar biasa. Dengan pengalaman 3 tahun di SMK Telkom Sidoarjo, 
+                    saya telah mengembangkan keahlian dalam merancang interface yang tidak hanya indah secara
                     visual, tetapi juga intuitif dan user-friendly.</p>
                 <p>Saya percaya bahwa desain yang baik adalah kombinasi sempurna antara estetika dan fungsionalitas.
                     Setiap proyek yang saya kerjakan selalu dimulai dengan pemahaman mendalam tentang kebutuhan pengguna
@@ -948,42 +1263,77 @@
                         <span class="stat-label">Tahun Pengalaman</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-number">50+</span>
+                        <span class="stat-number">5+</span>
                         <span class="stat-label">Proyek Selesai</span>
                     </div>
                 </div>
             </div>
 
             <div class="skills-section" data-aos="fade-left">
-                <div>
-                    <h3><i class="ri-palette-line"></i> Design & Research</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Adobe XD</span>
-                        <span class="skill-tag">User Research</span>
-                        <span class="skill-tag">Prototyping</span>
-                        <span class="skill-tag">Wireframing</span>
+                <h3><i class="ri-bar-chart-horizontal-line"></i> Skills & Expertise</h3>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name"><svg class="figma-icon" width="16" height="16" viewBox="0 0 38 57"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z"
+                                        fill="#1ABCFE" />
+                                    <path
+                                        d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z"
+                                        fill="#0ACF83" />
+                                    <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z"
+                                        fill="#FF7262" />
+                                    <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z"
+                                        fill="#F24E1E" />
+                                    <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z"
+                                        fill="#A259FF" />
+                                </svg> Figma</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress"></div>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <h3><i class="ri-code-box-line"></i> Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">Tailwind CSS</span>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name"><i class="ri-palette-fill"></i> UI/UX Design</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress"></div>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <h3><i class="ri-smartphone-line"></i> Mobile Design</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">iOS Design</span>
-                        <span class="skill-tag">Android Design</span>
-                        <span class="skill-tag">Flutter</span>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name"><i class="ri-html5-fill"></i> HTML & CSS</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name"><i class="ri-javascript-fill"></i> JavaScript</span>
+                            <span class="skill-percent">50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name"><i class="ri-reactjs-line"></i> React / Next.js</span>
+                            <span class="skill-percent">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1184,7 +1534,7 @@
                     <p>+62 813-3553-5596</p>
                 </a>
 
-                <a href="#" class="contact-card">
+                <a href="https://www.linkedin.com/in/muhammad-nabil-putra-ramadhan-230142352/" class="contact-card">
                     <div class="contact-icon">
                         <i class="ri-linkedin-fill"></i>
                     </div>
@@ -1200,10 +1550,12 @@
         <div class="footer-logo">Portfolio.</div>
 
         <div class="social-links">
-            <a href="#" class="social-link"><i class="ri-github-fill"></i></a>
-            <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a>
-            <a href="#" class="social-link"><i class="ri-instagram-line"></i></a>
-            <a href="#" class="social-link"><i class="ri-twitter-x-line"></i></a>
+            <a href="https://github.com/nabilp269" class="social-link"><i class="ri-github-fill"></i></a>
+            <a href="https://www.instagram.com/nabil.anak.sholeh" class="social-link"><i
+                    class="ri-linkedin-fill"></i></a>
+            <a href="https://www.linkedin.com/in/muhammad-nabil-putra-ramadhan-230142352/" class="social-link"><i
+                    class="ri-instagram-line"></i></a>
+
         </div>
 
         <p>&copy; 2024 Portfolio. Dibuat dengan <i class="ri-heart-fill" style="color: #ef4444;"></i> untuk
@@ -1224,9 +1576,7 @@
         // Typing Animation
         const texts = [
             "UI/UX Designer",
-            "Frontend Developer",
-            "Creative Problem Solver",
-            "Digital Experience Creator"
+            "Frontend Developer"
         ];
         let textIndex = 0;
         let charIndex = 0;
@@ -1247,12 +1597,12 @@
             let typeSpeed = isDeleting ? 40 : 80;
 
             if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000;
+                typeSpeed = 1500;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 textIndex = (textIndex + 1) % texts.length;
-                typeSpeed = 400;
+                typeSpeed = 300;
             }
 
             setTimeout(typeText, typeSpeed);
@@ -1311,6 +1661,45 @@
                 AOS.refresh();
             });
         });
+
+        // Animate skill bars on scroll
+        const skillItems = document.querySelectorAll('.skill-item');
+
+        // Function to animate skill bars
+        function animateSkillBar(skillItem) {
+            const percentText = skillItem.querySelector('.skill-percent').textContent;
+            const width = parseInt(percentText); // Ambil angka dari "50%"
+            const bar = skillItem.querySelector('.skill-progress');
+            bar.style.width = width + '%';
+        }
+
+        const animateSkillBars = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBar(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const skillObserver = new IntersectionObserver(animateSkillBars, {
+            threshold: 0.3,
+            rootMargin: '0px'
+        });
+
+        skillItems.forEach(item => {
+            skillObserver.observe(item);
+        });
+
+        // Also animate immediately after page loads (with small delay)
+        setTimeout(() => {
+            skillItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    animateSkillBar(item);
+                }
+            });
+        }, 500);
     </script>
 </body>
 

@@ -415,160 +415,7 @@
             color: var(--bg-dark);
         }
 
-        /* Process Section */
-        .process-section {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 5rem 2rem;
-            margin-top: 2rem;
-        }
 
-        .process-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .process-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .process-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .process-header p {
-            color: var(--text-gray);
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .process-step {
-            text-align: center;
-            position: relative;
-        }
-
-        .process-step::after {
-            content: '';
-            position: absolute;
-            top: 40px;
-            right: -1rem;
-            width: calc(100% - 80px);
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            opacity: 0.3;
-        }
-
-        .process-step:last-child::after {
-            display: none;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            font-weight: 800;
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-        }
-
-        .process-step h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .process-step p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Results Section */
-        .results-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .results-card {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .results-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-        }
-
-        .results-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
-            color: var(--primary);
-        }
-
-        .results-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .results-card>p {
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.05rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
 
         /* CTA Section */
         .cta-section {
@@ -651,17 +498,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
 
-            .process-step::after {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 600px) {
@@ -673,16 +510,8 @@
                 font-size: 2rem;
             }
 
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
             .description-card {
                 padding: 1.5rem;
-            }
-
-            .results-card {
-                padding: 2rem;
             }
         }
     </style>
@@ -802,63 +631,7 @@
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section class="process-section">
-        <div class="process-container">
-            <div class="process-header" data-aos="fade-up">
-                <h2>Design Process</h2>
-                <p>Proses pengembangan yang terstruktur dan user-centered</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-step" data-aos="fade-up" data-aos-delay="0">
-                    <div class="step-number">1</div>
-                    <h3>Research</h3>
-                    <p>User interview, analisis kompetitor & user persona</p>
-                </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
-                    <div class="step-number">2</div>
-                    <h3>Ideation</h3>
-                    <p>Brainstorming dan konsep desain awal</p>
-                </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
-                    <div class="step-number">3</div>
-                    <h3>Prototype</h3>
-                    <p>Wireframe dan high-fidelity prototype</p>
-                </div>
-                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
-                    <div class="step-number">4</div>
-                    <h3>Testing</h3>
-                    <p>Iterative testing dan refinement</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Results Section -->
-    <section class="results-section">
-        <div class="results-card" data-aos="zoom-in">
-            <div class="results-icon">
-                <i class="ri-trophy-line"></i>
-            </div>
-            <h2>Hasil Proyek</h2>
-            <p>Implementasi desain yang sukses menghasilkan peningkatan signifikan dalam user engagement dan experience.
-            </p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">40%</span>
-                    <span class="stat-label">Peningkatan User Engagement</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">25%</span>
-                    <span class="stat-label">Penurunan Bounce Rate</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">5K+</span>
-                    <span class="stat-label">Active Learners</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA Section -->
     <section class="cta-section" data-aos="fade-up">

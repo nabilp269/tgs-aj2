@@ -1012,30 +1012,30 @@
                     <i class="ri-file-text-line"></i> Deskripsi Proyek
                 </h2>
                 <p>
-                    <strong>Sahabat Chandra</strong> merupakan sistem web remitansi dan layanan keuangan yang menghubungkan kebutuhan nasabah pengirim uang (mata uang Hong Kong Dollar / HKD) ke berbagai rekening bank di Indonesia. Aplikasi ini dilengkapi dengan dua sisi antarmuka: <strong>Portal Pengguna (User Portal)</strong> untuk nasabah melakukan transfer dan cek kuota transaksi, serta <strong>Panel Administrasi (Admin Panel)</strong> bagi pengelola untuk memvalidasi transaksi, mengelola database pengguna, memoderasi forum komunitas, dan memetakan lokasi cabang operasional.
+                    <strong>Sahabat Chandra</strong> merupakan sistem web remitansi dan layanan keuangan modern yang menghubungkan kebutuhan nasabah pengirim uang (mata uang Hong Kong Dollar / HKD) ke berbagai rekening bank di Indonesia. Aplikasi ini dibangun dengan arsitektur modern berbasis <strong>Laravel Breeze</strong>, <strong>Inertia.js</strong>, dan <strong>React.js</strong> untuk antarmuka Single Page Application (SPA) yang cepat dan mulus. Dilengkapi integrasi <strong>Laravel Reverb</strong> untuk WebSocket real-time, database handal <strong>PostgreSQL</strong>, styling responsif dengan <strong>Tailwind CSS</strong>, serta version control terkelola di <strong>GitHub</strong>.
                 </p>
 
                 <h3 class="features-title">Fitur Utama Sistem:</h3>
                 <ul class="features-list">
                     <li>
                         <i class="ri-checkbox-circle-fill"></i>
-                        <span><strong>Multi-Role Authentication:</strong> Pemisahan peran yang aman antara Admin operasional dan Pengguna (Nasabah).</span>
+                        <span><strong>Autentikasi & Role (Laravel Breeze):</strong> Pemisahan peran yang aman antara Admin operasional dan Pengguna (Nasabah).</span>
                     </li>
                     <li>
                         <i class="ri-checkbox-circle-fill"></i>
-                        <span><strong>Monitoring Transaksi Real-time:</strong> Pelacakan status transfer uang (Menunggu, Sukses, Gagal/Ditolak) beserta log data pengirim dan penerima.</span>
+                        <span><strong>Real-time Updates (Laravel Reverb):</strong> Pelacakan dan notifikasi status pengiriman uang secara langsung tanpa refresh halaman.</span>
                     </li>
                     <li>
                         <i class="ri-checkbox-circle-fill"></i>
-                        <span><strong>Limitasi Transaksi Bulanan:</strong> Proteksi kuota maksimal kirim uang bulanan dalam mata uang HKD untuk kenyamanan dan keamanan nasabah.</span>
+                        <span><strong>Seamless User Experience (Inertia + React):</strong> Navigasi antarmuka cepat, interaktif, dan reaktif di seluruh modul dasbor.</span>
                     </li>
                     <li>
                         <i class="ri-checkbox-circle-fill"></i>
-                        <span><strong>Peta Cabang Berbasis Koordinat:</strong> Integrasi peta interaktif OpenStreetMap untuk menentukan lokasi cabang fisik terdekat dan jam operasional.</span>
+                        <span><strong>Penyimpanan Data Terstruktur (PostgreSQL):</strong> Pengelolaan data transaksi nominal HKD, riwayat pengiriman, dan akun nasabah secara reliabel.</span>
                     </li>
                     <li>
                         <i class="ri-checkbox-circle-fill"></i>
-                        <span><strong>Forum Komunitas & Informasi:</strong> Sarana diskusi internal antara sesama pengguna dan pengumuman resmi dari tim pengelola.</span>
+                        <span><strong>Peta Cabang Berbasis Koordinat:</strong> Penentuan lokasi cabang fisik terdekat dan jam operasional untuk kemudahan nasabah.</span>
                     </li>
                 </ul>
             </div>
@@ -1056,11 +1056,13 @@
                 <div class="info-card" data-aos="fade-left" data-aos-delay="250">
                     <div class="info-label">Teknologi Digunakan</div>
                     <div class="tech-tags">
-                        <span class="tech-tag">Laravel / PHP</span>
+                        <span class="tech-tag">Laravel Breeze</span>
+                        <span class="tech-tag">Inertia.js</span>
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Laravel Reverb</span>
                         <span class="tech-tag">Tailwind CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">OpenStreetMap / Leaflet</span>
-                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">GitHub</span>
                     </div>
                 </div>
             </div>
@@ -1288,22 +1290,22 @@
                 <div class="process-step" data-aos="fade-up" data-aos-delay="0">
                     <div class="step-number">1</div>
                     <h3>Analisis Kebutuhan</h3>
-                    <p>Memetakan alur remitansi, regulasi kuota bulanan HKD, dan kebutuhan operasional cabang.</p>
+                    <p>Memetakan alur remitansi HKD - IDR, pembatasan kuota transaksi bulanan, dan kebutuhan manajemen cabang.</p>
                 </div>
                 <div class="process-step" data-aos="fade-up" data-aos-delay="100">
                     <div class="step-number">2</div>
-                    <h3>Perancangan Arsitektur</h3>
-                    <p>Mendesain skema database relasional (transaksi, role, lokasi cabang) dan alur autentikasi.</p>
+                    <h3>Arsitektur & Database</h3>
+                    <p>Merancang skema database relasional PostgreSQL serta sistem autentikasi & perizinan role menggunakan Laravel Breeze.</p>
                 </div>
                 <div class="process-step" data-aos="fade-up" data-aos-delay="200">
                     <div class="step-number">3</div>
-                    <h3>Pengembangan Antarmuka</h3>
-                    <p>Membangun antarmuka modern dengan Tailwind CSS, styling clean, dan visualisasi data yang jelas.</p>
+                    <h3>Frontend SPA & Reverb</h3>
+                    <p>Membangun antarmuka interaktif dengan React.js & Inertia.js, styling Tailwind CSS, serta WebSockets real-time Laravel Reverb.</p>
                 </div>
                 <div class="process-step" data-aos="fade-up" data-aos-delay="300">
                     <div class="step-number">4</div>
-                    <h3>Uji Coba & Integrasi</h3>
-                    <p>Verifikasi alur transaksi pengiriman uang, fungsionalitas peta Leaflet, dan keamanan hak akses admin.</p>
+                    <h3>Testing & Versioning</h3>
+                    <p>Uji fungsionalitas alur transfer dan akurasi peta cabang, serta manajemen repositori terkelola menggunakan GitHub.</p>
                 </div>
             </div>
         </div>

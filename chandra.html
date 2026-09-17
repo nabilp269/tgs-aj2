@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahabat Chandra - Project Detail</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #0ea5e9;
+            --accent: #38bdf8;
+            --bg-dark: #0a0f1d;
+            --bg-card: #111a2e;
+            --bg-card-hover: #16223d;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --glass-bg: rgba(17, 26, 46, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(130px);
+            opacity: 0.25;
+            animation: float-blob 22s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            top: -15%;
+            left: -10%;
+            width: 650px;
+            height: 650px;
+            background: var(--primary);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -10%;
+            width: 750px;
+            height: 750px;
+            background: var(--secondary);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: -10s;
+        }
+
+        .blob-3 {
+            top: 45%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: #4f46e5;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation-delay: -6s;
+        }
+
+        @keyframes float-blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 45px) scale(1.08);
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .back-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateX(-5px);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 130px 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .meta-item i {
+            color: var(--accent);
+            font-size: 1.15rem;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            cursor: pointer;
+        }
+
+        .image-wrapper:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .image-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.35) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        /* Section Layouts */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 650px;
+            margin: 0.75rem auto 0;
+            font-size: 1rem;
+        }
+
+        /* Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-panel h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #ffffff;
+        }
+
+        .card-panel h2 i {
+            color: var(--accent);
+        }
+
+        .card-panel p {
+            color: var(--text-gray);
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .features-title {
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .features-list li i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .info-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.35rem 0.85rem;
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Tabs System for Admin & User Showcase */
+        .showcase-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Showcase Cards */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .showcase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .showcase-img-container {
+            position: relative;
+            overflow: hidden;
+            background: #060a12;
+            cursor: pointer;
+        }
+
+        .showcase-img-container img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-card:hover .showcase-img-container img {
+            transform: scale(1.04);
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 15, 29, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .showcase-card:hover .showcase-overlay {
+            opacity: 1;
+        }
+
+        .zoom-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .showcase-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-content h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+        }
+
+        .showcase-content p {
+            color: var(--text-gray);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            flex: 1;
+        }
+
+        .showcase-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+
+        .showcase-features span {
+            font-size: 0.78rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: rgba(17, 26, 46, 0.4);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 5rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -1rem;
+            width: calc(100% - 80px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0.3;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+            color: #ffffff;
+        }
+
+        .process-step h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Results / Impact Section */
+        .results-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 3.5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .results-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(37, 99, 235, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .results-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .results-card > p {
+            color: var(--text-gray);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            padding: 2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.25);
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.08);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Lightbox */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 7, 15, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 1100px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 1rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-caption {
+            margin-top: 1rem;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-panel {
+                padding: 1.5rem;
+            }
+
+            .results-card {
+                padding: 2rem;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="ri-arrow-left-line"></i> Kembali
+            </a>
+            <div class="project-badge">
+                <i class="ri-exchange-dollar-line"></i> FinTech & Remittance
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <div class="category-badge">
+                    <i class="ri-bank-card-line"></i> Web Transfer Uang
+                </div>
+                <h1 class="hero-title">Sahabat Chandra</h1>
+                <p class="hero-subtitle">
+                    Platform web transfer uang dan remitansi (HKD ke Rupiah) yang dirancang untuk memberikan kemudahan pengiriman uang, pelacakan riwayat transaksi real-time, pencarian cabang fisik terdekat, serta sistem panel admin yang komprehensif.
+                </p>
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <i class="ri-building-line"></i>
+                        <span>Sahabat Chandra Remittance</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-calendar-line"></i>
+                        <span>2 Bulan</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-user-star-line"></i>
+                        <span>Fullstack Web Developer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="image-wrapper" onclick="openLightbox('gambar/chandra-admin-dasbor.png', 'Dasbor Panel Admin Sahabat Chandra')">
+                    <img src="gambar/chandra-admin-dasbor.png" alt="Sahabat Chandra Admin Dashboard">
+                </div>
+                <div class="image-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview & Project Info -->
+    <section class="content-section">
+        <div class="overview-grid">
+            <div class="card-panel" data-aos="fade-up">
+                <h2>
+                    <i class="ri-file-text-line"></i> Deskripsi Proyek
+                </h2>
+                <p>
+                    <strong>Sahabat Chandra</strong> merupakan sistem web remitansi dan layanan keuangan yang menghubungkan kebutuhan nasabah pengirim uang (mata uang Hong Kong Dollar / HKD) ke berbagai rekening bank di Indonesia. Aplikasi ini dilengkapi dengan dua sisi antarmuka: <strong>Portal Pengguna (User Portal)</strong> untuk nasabah melakukan transfer dan cek kuota transaksi, serta <strong>Panel Administrasi (Admin Panel)</strong> bagi pengelola untuk memvalidasi transaksi, mengelola database pengguna, memoderasi forum komunitas, dan memetakan lokasi cabang operasional.
+                </p>
+
+                <h3 class="features-title">Fitur Utama Sistem:</h3>
+                <ul class="features-list">
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Multi-Role Authentication:</strong> Pemisahan peran yang aman antara Admin operasional dan Pengguna (Nasabah).</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Monitoring Transaksi Real-time:</strong> Pelacakan status transfer uang (Menunggu, Sukses, Gagal/Ditolak) beserta log data pengirim dan penerima.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Limitasi Transaksi Bulanan:</strong> Proteksi kuota maksimal kirim uang bulanan dalam mata uang HKD untuk kenyamanan dan keamanan nasabah.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Peta Cabang Berbasis Koordinat:</strong> Integrasi peta interaktif OpenStreetMap untuk menentukan lokasi cabang fisik terdekat dan jam operasional.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Forum Komunitas & Informasi:</strong> Sarana diskusi internal antara sesama pengguna dan pengumuman resmi dari tim pengelola.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-sidebar">
+                <div class="info-card" data-aos="fade-left" data-aos-delay="100">
+                    <div class="info-label">Klien / Entitas</div>
+                    <div class="info-value">Sahabat Chandra</div>
+                </div>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="150">
+                    <div class="info-label">Durasi Pengerjaan</div>
+                    <div class="info-value">2 Bulan</div>
+                </div>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="200">
+                    <div class="info-label">Peran (Role)</div>
+                    <div class="info-value">Fullstack & UI/UX</div>
+                </div>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="250">
+                    <div class="info-label">Teknologi Digunakan</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Laravel / PHP</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">OpenStreetMap / Leaflet</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section: Halaman Admin & User -->
+    <section class="content-section" id="showcase">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Tangkapan Layar & Fitur</span>
+            <h2>Antarmuka Sistem (Admin & Users)</h2>
+            <p>Eksplorasi modul lengkap yang tersedia baik untuk pengelola operasional maupun nasabah pengguna.</p>
+        </div>
+
+        <!-- Tab Selector -->
+        <div class="showcase-tabs" data-aos="fade-up" data-aos-delay="100">
+            <button class="tab-btn active" onclick="switchTab('admin', this)">
+                <i class="ri-shield-user-line"></i> Halaman Admin
+            </button>
+            <button class="tab-btn" onclick="switchTab('user', this)">
+                <i class="ri-user-smile-line"></i> Halaman Users (Nasabah)
+            </button>
+        </div>
+
+        <!-- Tab Content 1: Halaman Admin -->
+        <div id="tab-admin" class="tab-pane active">
+            <div class="showcase-grid">
+
+                <!-- Admin Card 1: Dasbor -->
+                <div class="showcase-card" data-aos="fade-up">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-admin-dasbor.png', 'Admin Dasbor - Statistik Aktivitas & Ringkasan Metrik')">
+                        <img src="gambar/chandra-admin-dasbor.png" alt="Admin Dasbor Sahabat Chandra">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Panel Admin</span>
+                        <h3>Dasbor Utama & Analitik</h3>
+                        <p>
+                            Menampilkan metrik utama sistem mencakup jumlah pengguna terdaftar, diskusi forum, jumlah cabang fisik, dan total transaksi. Dilengkapi grafik kurva analitik aktivitas bulanan serta daftar pendaftaran pengguna terbaru.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Statistik Aktivitas</span>
+                            <span>Aktivitas Terbaru</span>
+                            <span>Quick KPI Summary</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Card 2: Transaksi -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-admin-transaksi.png', 'Transaksi Data - Verifikasi Status & Filter Transaksi')">
+                        <img src="gambar/chandra-admin-transaksi.png" alt="Transaksi Data Admin">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Panel Admin</span>
+                        <h3>Manajemen Transaksi Data</h3>
+                        <p>
+                            Pusat verifikasi transaksi pengiriman uang nasabah dalam nominal HKD. Dilengkapi fitur pencarian cepat berdasarkan ID/nama, integrasi pemindai QR Code, status indikator (Kesuksesan / Gagal), serta tombol rincian detail.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Status Kesuksesan / Gagal</span>
+                            <span>Pindai QR Code</span>
+                            <span>Audit Nominal HKD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Card 3: Pengguna -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-admin-pengguna.png', 'Pengguna Data - Manajemen Akun & Hak Akses Peran')">
+                        <img src="gambar/chandra-admin-pengguna.png" alt="Pengguna Data Admin">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Panel Admin</span>
+                        <h3>Manajemen Pengguna (User Management)</h3>
+                        <p>
+                            Kelola data seluruh akun yang terdaftar pada sistem. Admin dapat melihat nomor kontak, email, tanggal registrasi, menetapkan peran (role admin vs pengguna), serta mengedit atau menghapus akun bermasalah.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Role Permission</span>
+                            <span>Pencarian Akun</span>
+                            <span>Manajemen Kontak</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Card 4: Forum -->
+                <div class="showcase-card" data-aos="fade-up">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-admin-forum.png', 'Forum Diskusi - Moderasi Konten & Publikasi Pengumuman')">
+                        <img src="gambar/chandra-admin-forum.png" alt="Forum Diskusi Admin">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Panel Admin</span>
+                        <h3>Forum Diskusi Komunitas</h3>
+                        <p>
+                            Fitur publikasi pengumuman penting kepada pengguna dan moderasi komentar. Admin dapat membuat postingan resmi dengan lampiran file, memantau respons suka/komentar, serta menghapus konten yang tidak sesuai aturan.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Post Pengumuman</span>
+                            <span>Moderasi Komentar</span>
+                            <span>Lampiran Dokumen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Card 5: Cabang -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-admin-cabang.png', 'Kelola Cabang - Pemetaan Lokasi Cabang pada Peta Interaktif')">
+                        <img src="gambar/chandra-admin-cabang.png" alt="Kelola Cabang Admin">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Panel Admin</span>
+                        <h3>Manajemen & Peta Lokasi Cabang</h3>
+                        <p>
+                            Fasilitas penambahan dan pengelolaan kantor cabang fisik Sahabat Chandra. Dilengkapi klik langsung pada peta interaktif untuk menentukan koordinat lintang dan bujur secara presisi, nomor telepon, dan jam operasional cabang.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Peta Koordinat Interaktif</span>
+                            <span>Jam Operasional</span>
+                            <span>Kelola Kontak Cabang</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tab Content 2: Halaman Users -->
+        <div id="tab-user" class="tab-pane">
+            <div class="showcase-grid">
+
+                <!-- User Card 1: Dashboard -->
+                <div class="showcase-card" data-aos="fade-up">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-user-dasbor.png', 'Dashboard User - Informasi Limit Transaksi Bulanan & Aksi Cepat')">
+                        <img src="gambar/chandra-user-dasbor.png" alt="Dashboard Pengguna Sahabat Chandra">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Halaman User</span>
+                        <h3>Dashboard Nasabah & Kuota Transaksi</h3>
+                        <p>
+                            Tampilan utama nasabah yang ramah dan intuitif. Menyajikan sisa batas transaksi bulanan dalam HKD, akses cepat menuju transfer uang, pengecekan riwayat, serta daftar 3 transaksi terbaru yang dilakukan nasabah.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Sisa Kuota HKD</span>
+                            <span>Shortcut Transfer Cepat</span>
+                            <span>Ringkasan Transaksi Terbaru</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Card 2: Lokasi Cabang -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-user-lokasi.png', 'Peta Cabang Terdekat - Deteksi Otomatis & Jarak Cabang')">
+                        <img src="gambar/chandra-user-lokasi.png" alt="Peta Cabang User">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Halaman User</span>
+                        <h3>Peta Cabang & Navigasi Terdekat</h3>
+                        <p>
+                            Membantu nasabah menemukan cabang fisik Sahabat Chandra di sekitarnya. Dilengkapi fitur pendeteksi lokasi otomatis, estimasi jarak dari posisi pengguna saat ini, serta kolom pencarian nama cabang atau alamat tujuan.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Deteksi Lokasi GPS</span>
+                            <span>Hitung Jarak Otomatis</span>
+                            <span>Cari Cabang Terdekat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Card 3: Riwayat Transaksi -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/chandra-user-riwayat.png', 'Riwayat Transaksi - Status Pengiriman Uang Real-time')">
+                        <img src="gambar/chandra-user-riwayat.png" alt="Riwayat Transaksi User">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Halaman User</span>
+                        <h3>Riwayat Pengiriman & Filter Status</h3>
+                        <p>
+                            Halaman detail pelacakan transaksi pengiriman dana nasabah. Menampilkan filter status (Menunggu, Berhasil, Ditolak), informasi nama penerima, rekening bank tujuan (Mandiri, BRI, dll), nominal Rupiah, serta kode referensi transaksi unik.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Badge Status Transaksi</span>
+                            <span>Informasi Bank Tujuan</span>
+                            <span>Filter Status Real-time</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Process Section -->
+    <section class="process-section">
+        <div class="process-container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Alur Pengerjaan</span>
+                <h2>Proses Perancangan & Implementasi</h2>
+                <p>Pendekatan sistematis untuk menghadirkan platform keuangan yang aman, intuitif, dan responsif.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+                    <div class="step-number">1</div>
+                    <h3>Analisis Kebutuhan</h3>
+                    <p>Memetakan alur remitansi, regulasi kuota bulanan HKD, dan kebutuhan operasional cabang.</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <h3>Perancangan Arsitektur</h3>
+                    <p>Mendesain skema database relasional (transaksi, role, lokasi cabang) dan alur autentikasi.</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <h3>Pengembangan Antarmuka</h3>
+                    <p>Membangun antarmuka modern dengan Tailwind CSS, styling clean, dan visualisasi data yang jelas.</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">4</div>
+                    <h3>Uji Coba & Integrasi</h3>
+                    <p>Verifikasi alur transaksi pengiriman uang, fungsionalitas peta Leaflet, dan keamanan hak akses admin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="content-section">
+        <div class="results-card" data-aos="zoom-in">
+            <div class="results-icon">
+                <i class="ri-award-line"></i>
+            </div>
+            <h2>Dampak & Nilai Tambah Proyek</h2>
+            <p>Sahabat Chandra berhasil menghadirkan otomasi pencatatan keuangan dan memudahkan akses informasi cabang bagi nasabah.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Digitalisasi Pencatatan Transaksi</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2 Sisi</span>
+                    <span class="stat-label">Terintegrasi (Admin & Nasabah)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Real-Time</span>
+                    <span class="stat-label">Pelacakan Status Pengiriman Uang</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-aos="fade-up">
+        <div class="cta-buttons">
+            <a href="index.html" class="btn btn-primary">
+                <i class="ri-arrow-left-line"></i> Kembali ke Portfolio
+            </a>
+            <a href="index.html#contact" class="btn btn-outline">
+                <i class="ri-mail-send-line"></i> Hubungi Saya
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Portfolio. Project Detail - Sahabat Chandra</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightboxImg" src="" alt="Enlarged View">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 700,
+            easing: 'ease-out-cubic',
+        });
+
+        // Tab Switching for Admin & Users
+        function switchTab(tabName, clickedBtn) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+            clickedBtn.classList.add('active');
+            const targetPane = document.getElementById('tab-' + tabName);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+
+            // Refresh AOS animations
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        }
+
+        // Lightbox Modal Functions
+        function openLightbox(imgSrc, caption) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImg');
+            const modalCaption = document.getElementById('lightboxCaption');
+
+            modalImg.src = imgSrc;
+            modalCaption.textContent = caption;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+
+</html>
+

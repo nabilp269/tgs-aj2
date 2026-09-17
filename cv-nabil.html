@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Muhammad Nabil Putra Ramadhan</title>
+    <style>
+        :root {
+            --navy: #062653;
+            --blue: #2469b5;
+            --light: #f4f8fc;
+            --text: #17202b;
+            --muted: #526171;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #e8eef5;
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        .page {
+            width: min(100%, 1000px);
+            margin: 28px auto;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 31% 69%;
+            min-height: 1200px;
+            box-shadow: 0 8px 30px #0b315522;
+        }
+
+        aside {
+            background: var(--navy);
+            color: #fff;
+            padding-bottom: 28px;
+        }
+
+        .photo {
+            height: 245px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #062653, #0e4384);
+        }
+
+        .photo img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #4c9bed;
+        }
+
+        .side-section {
+            margin-top: 18px;
+        }
+
+        .side-title {
+            padding: 8px 20px;
+            background: var(--blue);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .side-content {
+            padding: 12px 22px 0;
+            font-size: 14px;
+        }
+
+        .side-content p {
+            margin: 8px 0;
+        }
+
+        .side-content ul {
+            margin: 8px 0;
+            padding-left: 18px;
+        }
+
+        .side-content li {
+            margin: 6px 0;
+        }
+
+        main {
+            padding: 0 42px 42px;
+        }
+
+        header {
+            margin: 0 -42px 28px;
+            padding: 34px 42px 28px;
+            background: linear-gradient(115deg, #2469b5, #317bc7);
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 35px;
+            line-height: 1.15;
+        }
+
+        .role {
+            margin: 12px 0 0;
+            font-size: 19px;
+            letter-spacing: .3px;
+        }
+
+        h2 {
+            margin: 25px 0 8px;
+            font-size: 22px;
+            color: #111;
+            border-bottom: 3px solid var(--blue);
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            margin: 12px 0 3px;
+            font-size: 17px;
+        }
+
+        p {
+            margin: 5px 0 12px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .item {
+            margin: 12px 0 18px;
+        }
+
+        .item strong {
+            font-size: 16px;
+        }
+
+        .date {
+            float: right;
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            border-radius: 15px;
+            background: #e8f2fc;
+            color: #15528f;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        @media (max-width:700px) {
+            .page {
+                display: block;
+                margin: 0;
+            }
+
+            main {
+                padding: 0 24px 30px;
+            }
+
+            header {
+                margin: 0 -24px 22px;
+                padding: 28px 24px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .date {
+                float: none;
+                display: block;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .page {
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <aside>
+            <div class="photo"><img src="gambar/foto formal.jpeg" alt="Muhammad Nabil Putra Ramadhan"></div>
+            <section class="side-section">
+                <div class="side-title">Kontak</div>
+                <div class="side-content">
+                    <p>+62 813 3553 5596</p>
+                    <p>naputganteng@gmail.com</p>
+                    <p>Sidoarjo, Indonesia</p>
+                </div>
+            </section>
+            <section class="side-section">
+                <div class="side-title">Profil Profesional</div>
+                <div class="side-content">
+                    <p>UI/UX Designer dan Frontend Developer yang berfokus pada pengalaman pengguna, desain antarmuka,
+                        serta pengembangan web yang responsif dan terukur.</p>
+                </div>
+            </section>
+            <section class="side-section">
+                <div class="side-title">Prestasi</div>
+                <div class="side-content">
+                    <ul>
+                        <li>Juara 2 Kejurprov Polo Air 2026</li>
+                        <li>Juara 3 PORKAB Open Renang Sidoarjo</li>
+                        <li>Peringkat 1 PORKAB Polo Air Sidoarjo</li>
+                        <li>Juara 3 O2SN Renang Tingkat Provinsi 2024</li>
+                        <li>Penghargaan Lomba UI/UX Design 2025</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="side-section">
+                <div class="side-title">Keahlian</div>
+                <div class="side-content">
+                    <div class="tags">
+                        <span class="tag">Figma</span><span class="tag">UI/UX</span><span
+                            class="tag">Flutter</span><span class="tag">Laravel</span><span
+                            class="tag">React</span><span class="tag">JavaScript</span><span
+                            class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Tailwind
+                            CSS</span><span class="tag">PHP</span><span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </section>
+        </aside>
+        <main>
+            <header>
+                <h1>Muhammad Nabil Putra Ramadhan</h1>
+                <div class="role">UI/UX Designer &amp; Frontend Developer</div>
+            </header>
+            <h2>Ringkasan</h2>
+            <p>Seorang UI/UX Designer dan Frontend Developer yang memiliki minat kuat pada jaringan, desain produk
+                digital, dan pengembangan aplikasi. Terbiasa menerjemahkan kebutuhan pengguna menjadi desain yang
+                intuitif serta implementasi web yang rapi, responsif, dan mudah dikembangkan.</p>
+            <h2>Pengalaman Proyek</h2>
+            <div class="item"><span class="date">Mei 2026</span><strong>Redesign Web Company Profile Kantor</strong>
+                <p>Merancang ulang tampilan website company profile agar lebih modern, responsif, dan user-friendly
+                    menggunakan Figma, HTML, CSS, JavaScript, dan Tailwind CSS.</p>
+            </div>
+            <div class="item"><span class="date">Juli 2026</span><strong>Membuat Aplikasi Sahabat Chandra (Transfer
+                    Uang)</strong>
+                <p>Mengembangkan aplikasi transfer uang dengan dua platform: aplikasi pengguna menggunakan React serta
+                    web admin menggunakan Laravel dan PostgreSQL. Fitur mencakup top up, transfer, riwayat transaksi,
+                    notifikasi real-time, dan manajemen data pengguna.</p>
+            </div>
+            <div class="item"><span class="date">2025</span><strong>Proyek DTP Colab Web Penjualan Bahan Baku Pakan
+                    Ternak</strong>
+                <p>Membuat prototype UI/UX di Figma berdasarkan kebutuhan pemilik client.</p>
+            </div>
+            <div class="item"><strong>Mobile UI/UX Design — BERSIHin &amp; NUKELEARN</strong>
+                <p>Membuat rancangan UI/UX mobile untuk kompetisi dengan fokus pada alur pengguna, visual yang
+                    konsisten, dan kemudahan penggunaan.</p>
+            </div>
+            <h2>Soft Skills</h2>
+            <p>Komunikasi &nbsp; • &nbsp; Kepemimpinan &nbsp; • &nbsp; Problem Solving &nbsp; • &nbsp; Kerja Tim</p>
+            <h2>Tujuan Karier</h2>
+            <p>Terbuka untuk peluang kerja full-time, freelance, maupun magang di bidang UI/UX Design dan Frontend
+                Development. Berkomitmen untuk terus mengembangkan kemampuan digital serta menghasilkan solusi yang
+                bermanfaat bagi pengguna dan bisnis.</p>
+            <h2>Pendidikan &amp; Pengembangan</h2>
+            <p>Fokus pada Sistem Informasi, Jaringan, Aplikasi, desain produk digital, dan pengembangan web melalui
+                pembelajaran serta proyek-proyek mandiri.</p>
+        </main>
+    </div>
+</body>
+
+</html>

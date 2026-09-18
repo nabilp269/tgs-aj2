@@ -1765,8 +1765,62 @@
         .btn-primary, .btn-drawer-cv { color: #fff; background: linear-gradient(135deg, #6557d8, #897bef); box-shadow: 0 12px 24px rgba(101,87,216,.22); }
         footer { color: #68708c; background: #fff; border-top-color: rgba(101,87,216,.1); }
 
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .45rem;
+            min-width: 42px;
+            height: 38px;
+            padding: 0 .75rem;
+            border: 1px solid rgba(101,87,216,.22);
+            border-radius: 999px;
+            background: #fff;
+            color: #6557d8;
+            cursor: pointer;
+            transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease;
+        }
+        .theme-toggle:hover { transform: translateY(-2px); background: #f0eeff; }
+        .theme-toggle .theme-label { font-size: .75rem; font-weight: 700; }
+
+        [data-theme="dark"] {
+            --primary: #8c83ff;
+            --primary-dark: #6e63e8;
+            --secondary: #59d8ee;
+            --accent: #ff8fc9;
+            --bg-dark: #0b1020;
+            --bg-card: rgba(19, 28, 53, .86);
+            --bg-card-hover: #1b294d;
+            --text-light: #f4f6ff;
+            --text-gray: #aab3ca;
+            --glass-bg: rgba(11, 16, 32, .88);
+            --glass-border: rgba(148, 163, 255, .2);
+        }
+        [data-theme="dark"] body { color: var(--text-light); background: #0b1020; }
+        [data-theme="dark"] body::before { background-image: radial-gradient(rgba(140,131,255,.16) 1px, transparent 1px); }
+        [data-theme="dark"] nav { background: rgba(11,16,32,.72); }
+        [data-theme="dark"] nav.scrolled { background: rgba(11,16,32,.92); border-bottom-color: rgba(140,131,255,.22); box-shadow: 0 8px 28px rgba(0,0,0,.25); }
+        [data-theme="dark"] .logo { color: #fff; }
+        [data-theme="dark"] .nav-links { background: rgba(255,255,255,.045); }
+        [data-theme="dark"] .nav-links a { color: #aab3ca; }
+        [data-theme="dark"] .nav-links a:hover, [data-theme="dark"] .nav-links a.active { color: #fff; }
+        [data-theme="dark"] .theme-toggle { background: #182342; color: #ffe28a; border-color: rgba(255,226,138,.3); }
+        [data-theme="dark"] .theme-toggle:hover { background: #23345e; }
+        [data-theme="dark"] .hero { color: var(--text-light); background: linear-gradient(180deg, #111a35 0%, #0b1020 72%); }
+        [data-theme="dark"] .hero h1, [data-theme="dark"] .hero h2 { color: #f4f6ff; }
+        [data-theme="dark"] .hero .greeting { background: rgba(255,255,255,.06); color: #d8def2; border-color: rgba(140,131,255,.25); }
+        [data-theme="dark"] section { background: rgba(19,28,53,.62); border-color: rgba(148,163,255,.14); box-shadow: 0 16px 50px rgba(0,0,0,.18); }
+        [data-theme="dark"] section:nth-of-type(even) { background: linear-gradient(215deg, rgba(34,31,75,.72), rgba(11,16,32,.72)); }
+        [data-theme="dark"] .about-text, [data-theme="dark"] .skills-section, [data-theme="dark"] .stat-box, [data-theme="dark"] .project-card, [data-theme="dark"] .cert-card, [data-theme="dark"] .contact-box, [data-theme="dark"] .contact-card { background: rgba(19,28,53,.9); border-color: rgba(148,163,255,.18); box-shadow: 0 15px 38px rgba(0,0,0,.22); }
+        [data-theme="dark"] .about-text p, [data-theme="dark"] .project-body p, [data-theme="dark"] .cert-body p, [data-theme="dark"] .contact-box > p { color: #aab3ca; }
+        [data-theme="dark"] .skills-section h3, [data-theme="dark"] .skill-header, [data-theme="dark"] .project-body h3, [data-theme="dark"] .cert-body h3, [data-theme="dark"] .cert-card h3 { color: #f4f6ff; }
+        [data-theme="dark"] .skill-bar { background: rgba(255,255,255,.08); }
+        [data-theme="dark"] .tech-pill { color: #cbd4ec; background: rgba(140,131,255,.1); border-color: rgba(140,131,255,.2); }
+        [data-theme="dark"] .contact-box { background: linear-gradient(135deg, #20204b, #121b35); }
+        [data-theme="dark"] .btn-outline, [data-theme="dark"] .btn-cv-hero, [data-theme="dark"] .btn-nav-cv { color: #d7d9ff; background: rgba(255,255,255,.05); border-color: rgba(140,131,255,.32); }
+        [data-theme="dark"] footer { color: #aab3ca; background: #0b1020; border-top-color: rgba(140,131,255,.14); }
+
         /* Responsive Breakpoints */
-        @media (max-width: 992px) {
             .nav-links {
                 display: none;
             }
@@ -1884,6 +1938,10 @@
                     <li><a href="#portfolio">Karya & Prestasi</a></li>
                     <li><a href="#contact">Data Diri</a></li>
                 </ul>
+
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+                    <i class="ri-moon-line"></i><span class="theme-label">Gelap</span>
+                </button>
 
                 <!-- Tombol Lihat CV di Navbar -->
                 <button class="btn-nav-cv" onclick="openCvModal()">
@@ -2507,6 +2565,28 @@
             setTimeout(typeText, typeSpeed);
         }
         typeText();
+
+        // Theme Toggle: mode terang/gelap tersimpan di browser
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('nabil-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        function applyTheme(theme) {
+            const darkMode = theme === 'dark';
+            document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+            themeToggle.innerHTML = darkMode
+                ? '<i class="ri-sun-line"></i><span class="theme-label">Terang</span>'
+                : '<i class="ri-moon-line"></i><span class="theme-label">Gelap</span>';
+            themeToggle.setAttribute('aria-label', darkMode ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
+            themeToggle.setAttribute('aria-pressed', String(darkMode));
+        }
+
+        applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+        themeToggle.addEventListener('click', () => {
+            const nextTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('nabil-theme', nextTheme);
+            applyTheme(nextTheme);
+        });
 
         // Navbar Scroll Styling
         const navbar = document.getElementById('navbar');

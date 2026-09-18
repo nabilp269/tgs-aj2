@@ -1783,14 +1783,16 @@
         .theme-toggle:hover { transform: translateY(-2px); background: #f0eeff; }
         .theme-toggle .theme-label { font-size: .75rem; font-weight: 700; }
 
-        .theme-toggle-floating {
-            position: fixed;
-            right: 1.5rem;
-            bottom: 1.5rem;
-            z-index: 1100;
-            box-shadow: 0 10px 24px rgba(55,48,116,.16);
+        .theme-toggle-nav {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            padding: 0;
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(55,48,116,.12);
         }
-        [data-theme="dark"] .theme-toggle-floating { box-shadow: 0 10px 24px rgba(0,0,0,.3); }
+        .theme-toggle-nav .theme-label { display: none; }
+        [data-theme="dark"] .theme-toggle-nav { box-shadow: 0 8px 20px rgba(0,0,0,.24); }
 
         [data-theme="dark"] {
             --primary: #8c83ff;
@@ -1854,9 +1856,10 @@
                 padding: 1rem 0;
             }
 
-            .theme-toggle-floating {
-                right: 1rem;
-                bottom: 1rem;
+            .theme-toggle-nav {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
             }
 
             .btn-nav-cv {
@@ -1938,10 +1941,6 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <button class="theme-toggle theme-toggle-floating" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
-        <i class="ri-moon-line"></i><span class="theme-label">Gelap</span>
-    </button>
-
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
@@ -1963,7 +1962,11 @@
                     <i class="ri-file-user-line"></i> Lihat CV
                 </button>
 
-                <!-- Mobile Hamburger Toggle -->
+                <button class="theme-toggle theme-toggle-nav" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+                    <i class="ri-moon-line"></i><span class="theme-label">Gelap</span>
+                </button>
+
+                <!-- Mobile Menu Toggle -->
                 <button class="mobile-toggle" id="navToggle" onclick="toggleMobileDrawer()" aria-label="Menu Navigasi">
                     <i class="ri-menu-4-line"></i>
                 </button>

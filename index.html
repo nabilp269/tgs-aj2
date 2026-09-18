@@ -1783,6 +1783,15 @@
         .theme-toggle:hover { transform: translateY(-2px); background: #f0eeff; }
         .theme-toggle .theme-label { font-size: .75rem; font-weight: 700; }
 
+        .theme-toggle-floating {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            z-index: 1100;
+            box-shadow: 0 10px 24px rgba(55,48,116,.16);
+        }
+        [data-theme="dark"] .theme-toggle-floating { box-shadow: 0 10px 24px rgba(0,0,0,.3); }
+
         [data-theme="dark"] {
             --primary: #8c83ff;
             --primary-dark: #6e63e8;
@@ -1821,7 +1830,7 @@
         [data-theme="dark"] footer { color: #aab3ca; background: #0b1020; border-top-color: rgba(140,131,255,.14); }
 
         /* Responsive Breakpoints */
-            .nav-links {
+        @media (max-width: 992px) {
                 display: none;
             }
 
@@ -1842,6 +1851,11 @@
         @media (max-width: 768px) {
             nav {
                 padding: 1rem 0;
+            }
+
+            .theme-toggle-floating {
+                right: 1rem;
+                bottom: 1rem;
             }
 
             .btn-nav-cv {
@@ -1923,6 +1937,10 @@
         <div class="blob blob-3"></div>
     </div>
 
+    <button class="theme-toggle theme-toggle-floating" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+        <i class="ri-moon-line"></i><span class="theme-label">Gelap</span>
+    </button>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
@@ -1938,10 +1956,6 @@
                     <li><a href="#portfolio">Karya & Prestasi</a></li>
                     <li><a href="#contact">Data Diri</a></li>
                 </ul>
-
-                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
-                    <i class="ri-moon-line"></i><span class="theme-label">Gelap</span>
-                </button>
 
                 <!-- Tombol Lihat CV di Navbar -->
                 <button class="btn-nav-cv" onclick="openCvModal()">

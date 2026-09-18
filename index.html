@@ -1600,6 +1600,92 @@
         .contact-box h2 { text-shadow: 0 0 24px rgba(94, 231, 255, 0.22); }
         .contact-card:hover { border-color: rgba(94, 231, 255, 0.44); box-shadow: 0 0 24px rgba(94, 231, 255, 0.12); }
 
+        /* Curved Aurora Layout */
+        section {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 7rem 3rem;
+            border: 1px solid rgba(148, 219, 255, 0.08);
+            border-radius: 76px 24px 76px 24px;
+            background: linear-gradient(145deg, rgba(13, 24, 52, 0.34), rgba(5, 8, 22, 0.16));
+            overflow: hidden;
+        }
+
+        section:nth-of-type(even) {
+            border-radius: 24px 76px 24px 76px;
+            background: linear-gradient(215deg, rgba(26, 18, 62, 0.34), rgba(5, 8, 22, 0.16));
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            right: -110px;
+            bottom: -130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(155, 123, 255, 0.22), transparent 68%);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        .hero {
+            max-width: none;
+            min-height: 100vh;
+            margin: 0;
+            border: 0;
+            border-radius: 0 0 110px 110px;
+            background: radial-gradient(ellipse at 50% 42%, rgba(18, 56, 100, 0.38), transparent 58%);
+        }
+
+        #about::after, #portfolio::after, #contact::after { left: -110px; right: auto; background: radial-gradient(circle, rgba(94, 231, 255, 0.16), transparent 68%); }
+
+        .about-text, .skills-section, .stat-box, .project-card, .cert-card, .contact-card {
+            background: linear-gradient(145deg, rgba(21, 35, 68, 0.76), rgba(8, 14, 32, 0.84));
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .about-text {
+            padding: 2.4rem;
+            border: 1px solid rgba(148, 219, 255, 0.12);
+            border-radius: 42px 18px 42px 18px;
+            position: relative;
+        }
+
+        .about-text::before, .skills-section::before, .contact-box::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            top: -52px;
+            right: -38px;
+            border-radius: 50%;
+            border: 1px solid rgba(94, 231, 255, 0.22);
+            box-shadow: 0 0 28px rgba(94, 231, 255, 0.12);
+        }
+
+        .skills-section { border-radius: 18px 42px 18px 42px; position: relative; }
+        .stat-box { border-radius: 26px 10px 26px 10px; }
+        .stat-box:nth-child(even) { border-radius: 10px 26px 10px 26px; }
+        .project-card, .cert-card { border-radius: 34px 14px 34px 14px; }
+        .project-card:nth-child(even), .cert-card:nth-child(even) { border-radius: 14px 34px 14px 34px; }
+        .project-img, .cert-img-container { border-radius: 30px 10px 0 0; }
+        .project-body, .cert-body { position: relative; }
+        .tech-pill { background: rgba(94, 231, 255, 0.07); border-color: rgba(94, 231, 255, 0.16); }
+        .portfolio-tabs { position: relative; z-index: 1; }
+        .tab-btn { box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18); }
+        .contact-box { border-radius: 54px 18px 54px 18px; }
+        .contact-card { border-radius: 26px 10px 26px 10px; }
+        .contact-card:nth-child(even) { border-radius: 10px 26px 10px 26px; }
+
+        @media (max-width: 768px) {
+            section { margin: 1rem 0.8rem; padding: 5rem 1.2rem; border-radius: 42px 14px 42px 14px; }
+            section:nth-of-type(even) { border-radius: 14px 42px 14px 42px; }
+            .hero { margin: 0; padding-left: 1.2rem; padding-right: 1.2rem; border-radius: 0 0 54px 54px; }
+            .about-text { padding: 1.6rem; }
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 992px) {
             .nav-links {

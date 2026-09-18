@@ -46,6 +46,12 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
         /* Custom Scrollbar */
@@ -283,6 +289,26 @@
             font-weight: 700;
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
             transform: translateY(-2px);
+        }
+
+        .nav-links a,
+        .mobile-drawer a {
+            position: relative;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:active,
+        .mobile-drawer a:active {
+            transform: scale(0.96);
+        }
+
+        section.menu-focus {
+            animation: section-focus 1.1s ease-out;
+        }
+
+        @keyframes section-focus {
+            0% { filter: brightness(1.3); }
+            100% { filter: brightness(1); }
         }
 
         /* Mobile Hamburger */
@@ -2344,6 +2370,35 @@
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Menu Navigation
+        const allMenuLinks = document.querySelectorAll('.nav-links a, .mobile-drawer a');
+
+        allMenuLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                const targetId = link.getAttribute('href');
+                if (!targetId || !targetId.startsWith('#')) return;
+
+                const targetSection = document.querySelector(targetId);
+                if (!targetSection) return;
+
+                event.preventDefault();
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - navbarHeight - 18;
+
+                window.scrollTo({ top: Math.max(0, targetPosition), behavior: 'smooth' });
+                history.replaceState(null, '', targetId);
+
+                targetSection.classList.remove('menu-focus');
+                void targetSection.offsetWidth;
+                targetSection.classList.add('menu-focus');
+                setTimeout(() => targetSection.classList.remove('menu-focus'), 1200);
+
+                if (document.getElementById('mobileDrawer').classList.contains('active')) {
+                    toggleMobileDrawer();
                 }
             });
         });

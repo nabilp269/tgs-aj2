@@ -1963,7 +1963,7 @@
                 </button>
 
                 <button class="theme-toggle theme-toggle-nav" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
-                    <i class="ri-moon-line"></i><span class="theme-label">Gelap</span>
+                    <i class="ri-moon-line" aria-hidden="true"></i>
                 </button>
 
                 <!-- Mobile Menu Toggle -->
@@ -2593,8 +2593,8 @@
             const darkMode = theme === 'dark';
             document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
             themeToggle.innerHTML = darkMode
-                ? '<i class="ri-sun-line"></i><span class="theme-label">Terang</span>'
-                : '<i class="ri-moon-line"></i><span class="theme-label">Gelap</span>';
+                ? '<i class="ri-sun-line" aria-hidden="true"></i>'
+                : '<i class="ri-moon-line" aria-hidden="true"></i>';
             themeToggle.setAttribute('aria-label', darkMode ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
             themeToggle.setAttribute('aria-pressed', String(darkMode));
         }

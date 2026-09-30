@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Scan Nota Bensin (FuelScan) - Project Detail</title>
+    <meta name="description"
+        content="Detail proyek OCR Scan Nota Bensin (FuelScan) - Sistem pintar pemindai struk SPBU berbasis AI PaddleOCR, database MySQL scanota, validasi multi-driver, dan analitik pengeluaran BBM.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-light: #10b981;
+            --primary-dark: #047857;
+            --secondary: #0284c7;
+            --accent: #34d399;
+            --accent-cyan: #38bdf8;
+            --bg-dark: #090e17;
+            --bg-card: #0f172a;
+            --bg-card-hover: #162238;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(130px);
+            opacity: 0.22;
+            animation: float-blob 22s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            top: -15%;
+            left: -10%;
+            width: 650px;
+            height: 650px;
+            background: var(--primary);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -10%;
+            width: 750px;
+            height: 750px;
+            background: var(--secondary);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: -10s;
+        }
+
+        .blob-3 {
+            top: 45%;
+            left: 45%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: #0d9488;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation-delay: -6s;
+        }
+
+        @keyframes float-blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 45px) scale(1.08);
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateX(-5px);
+            background: rgba(52, 211, 153, 0.1);
+        }
+
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 130px 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-title {
+            font-size: 2.9rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.12rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-gray);
+            font-size: 0.92rem;
+        }
+
+        .meta-item i {
+            color: var(--accent);
+            font-size: 1.15rem;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            cursor: pointer;
+            background: #070d18;
+        }
+
+        .image-wrapper:hover {
+            transform: translateY(-6px);
+            border-color: rgba(52, 211, 153, 0.45);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .image-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+
+        /* Section Layouts */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3.5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 680px;
+            margin: 0.75rem auto 0;
+            font-size: 1rem;
+        }
+
+        /* Overview Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-panel h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #ffffff;
+        }
+
+        .card-panel h2 i {
+            color: var(--accent);
+        }
+
+        .card-panel p {
+            color: var(--text-gray);
+            margin-bottom: 1.6rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .features-title {
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .features-list li i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .info-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.35rem 0.85rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Tabs System for Showcase */
+        .showcase-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #ffffff;
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.4);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Showcase Cards */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .showcase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(52, 211, 153, 0.35);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .showcase-img-container {
+            position: relative;
+            overflow: hidden;
+            background: #060a12;
+            cursor: pointer;
+        }
+
+        .showcase-img-container img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-card:hover .showcase-img-container img {
+            transform: scale(1.04);
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(9, 14, 23, 0.72);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .showcase-card:hover .showcase-overlay {
+            opacity: 1;
+        }
+
+        .zoom-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        .showcase-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-content h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+        }
+
+        .showcase-content p {
+            color: var(--text-gray);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            flex: 1;
+        }
+
+        .showcase-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+
+        .showcase-features span {
+            font-size: 0.78rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Process Section */
+        .process-section {
+            background: rgba(15, 23, 42, 0.4);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 5rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -1rem;
+            width: calc(100% - 80px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            opacity: 0.3;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.35);
+            color: #ffffff;
+        }
+
+        .process-step h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Results / Impact Section */
+        .results-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 3.5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .results-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .results-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .results-card>p {
+            color: var(--text-gray);
+            max-width: 680px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            padding: 1.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.92rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(5, 150, 105, 0.5);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(52, 211, 153, 0.08);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Modal Lightbox */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 7, 15, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 1150px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 1rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+        }
+
+        .lightbox-caption {
+            margin-top: 1rem;
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#portfolio" class="back-btn">
+                <i class="ri-arrow-left-line"></i> Kembali ke Portfolio
+            </a>
+            <span class="project-badge">
+                <i class="ri-cpu-line"></i> AI & Computer Vision
+            </span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                <div class="category-badge">
+                    <i class="ri-gas-station-fill"></i> Smart SPBU OCR System
+                </div>
+                <h1 class="hero-title">OCR Scan Nota Bensin</h1>
+                <p class="hero-subtitle">
+                    Aplikasi web cerdas <strong>FuelScan</strong> berbasis kecerdasan buatan (<strong>PaddleOCR</strong>) untuk otomatisasi pemindaian, ekstraksi teks nota struk SPBU (Pertamina, Shell, BP, Vivo), validasi safety-first, pencatatan multi-pengemudi ke database <strong>MySQL scanota</strong>, serta rekap analitik pengeluaran bahan bakar secara real-time.
+                </p>
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <i class="ri-code-s-slash-line"></i>
+                        <span>Web App & AI Engine</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-database-2-line"></i>
+                        <span>MySQL (scanota)</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-calendar-line"></i>
+                        <span>Agustus - September 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ri-user-star-line"></i>
+                        <span>Fullstack & AI Developer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="image-wrapper" onclick="openLightbox('gambar/ocr-nota-pindai.png', 'FuelScan - Modul Pemindaian & Deteksi Hasil OCR Nota SPBU')">
+                    <img src="gambar/ocr-nota-pindai.png" alt="FuelScan OCR Scan Nota Bensin">
+                </div>
+                <div class="image-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview & Project Info -->
+    <section class="content-section">
+        <div class="overview-grid">
+            <div class="card-panel" data-aos="fade-up">
+                <h2>
+                    <i class="ri-file-text-line"></i> Deskripsi & Latar Belakang
+                </h2>
+                <p>
+                    <strong>OCR Scan Nota Bensin (FuelScan)</strong> hadir sebagai solusi modern untuk menuntaskan kendala operasional pencatatan pengeluaran bahan bakar kendaraan kantor/lapangan. Kertas struk kasir SPBU berbahan termal rentan pudar, hilang, atau kusut sehingga memicu selisih saat proses klaim atau reimbursement bulanan.
+                </p>
+                <p>
+                    Melalui integrasi model computer vision <strong>PaddleOCR</strong>, sistem ini mampu mengekstraksi informasi penting secara presisi—meliputi nama/lokasi SPBU, nomor pompa/nozzle, jenis BBM (Pertalite, Pertamax, Dexlite, dsb.), volume liter, harga per liter, total pembayaran, serta nomor struk transaksi. Dilengkapi sistem verifikasi <em>safety-first</em> yang secara cerdas memberi peringatan jika terdapat karakter kabur agar laporan keuangan selalu akurat 100%.
+                </p>
+
+                <h3 class="features-title">Fitur Utama Sistem:</h3>
+                <ul class="features-list">
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Deteksi Otomatis PaddleOCR:</strong> Ekstraksi data teks nota struk berkecepatan tinggi dengan toleransi kemiringan kertas, kualitas cetak minim, dan variasi format struk resmi.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Multi-Source Capture:</strong> Pengambilan foto struk fleksibel lewat kamera ponsel pengemudi di SPBU, webcam laptop, drag-and-drop file gambar, maupun sampel struk pengujian.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Safety-First Validation & Pilihan Cepat:</strong> Notifikasi proteksi jika angka perlu dikonfirmasi manual, dilengkapi tombol cepat jenis BBM resmi serta sinkronisasi harga per liter.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Manajemen Multi-Pengemudi:</strong> Pengelompokan pengisian BBM berdasarkan nama driver (misal: Nabil Putra, Satria) dengan chip selektor cepat dan manajemen daftar staf.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Riwayat Terpusat & Export Fleksibel:</strong> Tabel riwayat pengisian dengan pratinjau thumbnail struk asli, filter tanggal & BBM, serta kemampuan ekspor ke format <strong>CSV</strong> dan <strong>PDF per Orang</strong>.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-circle-fill"></i>
+                        <span><strong>Dasbor Statistik & Analitik Konsumsi:</strong> Metrik total biaya pengeluaran, volume BBM terisi, efisiensi harga rata-rata, pengeluaran per driver, dan visualisasi distribusi jenis bahan bakar.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="info-sidebar">
+                <div class="info-card" data-aos="fade-left" data-aos-delay="100">
+                    <div class="info-label">Nama Karya</div>
+                    <div class="info-value">OCR Scan Nota Bensin (FuelScan)</div>
+                </div>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="150">
+                    <div class="info-label">Status Proyek</div>
+                    <div class="info-value">Selesai & Aktif Digunakan</div>
+                </div>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="200">
+                    <div class="info-label">Peran (Role)</div>
+                    <div class="info-value">Fullstack & AI Developer</div>
+                </div>
+                <div class="info-card" data-aos="fade-left" data-aos-delay="250">
+                    <div class="info-label">Teknologi Digunakan</div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PaddleOCR</span>
+                        <span class="tech-tag">Python AI</span>
+                        <span class="tech-tag">MySQL scanota</span>
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Data Analytics</span>
+                        <span class="tech-tag">Export PDF & CSV</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section: Halaman & Fitur -->
+    <section class="content-section" id="showcase">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Tangkapan Layar & Fitur</span>
+            <h2>Antarmuka & Fitur Unggulan</h2>
+            <p>Jelajahi alur lengkap aplikasi mulai dari pemindaian struk, manajemen riwayat pengisian, hingga dasbor analitik konsumsi BBM.</p>
+        </div>
+
+        <!-- Tab Selector -->
+        <div class="showcase-tabs" data-aos="fade-up" data-aos-delay="100">
+            <button class="tab-btn active" onclick="switchTab('all', this)">
+                <i class="ri-grid-fill"></i> Semua Modul
+            </button>
+            <button class="tab-btn" onclick="switchTab('scan', this)">
+                <i class="ri-scan-2-line"></i> 1. Pindai Nota & Deteksi
+            </button>
+            <button class="tab-btn" onclick="switchTab('history', this)">
+                <i class="ri-history-line"></i> 2. Riwayat & Export
+            </button>
+            <button class="tab-btn" onclick="switchTab('stats', this)">
+                <i class="ri-bar-chart-box-line"></i> 3. Statistik & Analitik
+            </button>
+        </div>
+
+        <!-- Tab: Semua Modul (Default) -->
+        <div id="tab-all" class="tab-pane active">
+            <div class="showcase-grid">
+
+                <!-- Card 1: Pindai Nota -->
+                <div class="showcase-card" data-aos="fade-up">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/ocr-nota-pindai.png', 'Modul Pindai Nota - Pengambilan Foto & Deteksi Form Pintar')">
+                        <img src="gambar/ocr-nota-pindai.png" alt="Modul Pindai Nota FuelScan">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Modul AI Pemindaian</span>
+                        <h3>Pengambilan Nota & Deteksi OCR</h3>
+                        <p>
+                            Menyediakan antarmuka capture serbaguna (Kamera HP, Webcam, dan Upload berkas) yang terhubung langsung dengan engine PaddleOCR. Hasil pembacaan otomatis mengisi form SPBU, tanggal, jam, pompa, nozzle, volume liter, dan harga acuan per liter secara presisi dengan sistem validasi safety-first.
+                        </p>
+                        <div class="showcase-features">
+                            <span>PaddleOCR Engine</span>
+                            <span>Kamera HP & Webcam</span>
+                            <span>Pilihan Cepat BBM</span>
+                            <span>Safety Alert Form</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Riwayat Pengisian -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/ocr-nota-riwayat.png', 'Riwayat Pengisian & Filter Rekap Nota Bensin')">
+                        <img src="gambar/ocr-nota-riwayat.png" alt="Riwayat Pengisian dan Nota Bensin">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Manajemen Transaksi</span>
+                        <h3>Riwayat Pengisian & Export Nota</h3>
+                        <p>
+                            Daftar tabel interaktif dari seluruh transaksi BBM yang dilengkapi thumbnail foto struk fisik asli, rincian SPBU, jenis BBM (Pertalite RON 90 / Pertamax RON 92), volume liter, dan total nominal. Tersedia fitur filter nama pengemudi, tanggal, serta export data format CSV dan PDF per orang.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Thumbnail Struk Asli</span>
+                            <span>Filter Multi-Driver</span>
+                            <span>Export CSV</span>
+                            <span>Export PDF Per Orang</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Statistik -->
+                <div class="showcase-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/ocr-nota-statistik.png', 'Dasbor Statistik & Analitik Pengeluaran BBM')">
+                        <img src="gambar/ocr-nota-statistik.png" alt="Statistik Pengeluaran BBM FuelScan">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Analitik & KPI</span>
+                        <h3>Statistik & Efisiensi Bahan Bakar</h3>
+                        <p>
+                            Dasbor analitik cerdas yang menyajikan metrik kumulatif secara real-time: Total Pengeluaran BBM (Rp 235.000), Total Volume (19,57 L), Efisiensi Harga Rata-rata per Liter (Rp 12.008/L), perbandingan biaya per pengemudi, serta visualisasi progress bar distribusi jenis BBM.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Metrik KPI Keuangan</span>
+                            <span>Pengeluaran per Driver</span>
+                            <span>Distribusi BBM</span>
+                            <span>Analisis Efisiensi Biaya</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tab: Scan Modul Focus -->
+        <div id="tab-scan" class="tab-pane">
+            <div class="showcase-grid">
+                <div class="showcase-card">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/ocr-nota-pindai.png', 'Pindai Nota - Tangkapan Layar Lengkap')">
+                        <img src="gambar/ocr-nota-pindai.png" alt="Pindai Nota FuelScan">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Modul Pemindaian Struk</span>
+                        <h3>Deteksi Teks Otomatis & Form Validasi</h3>
+                        <p>
+                            Fokus pada kenyamanan pengemudi di lapangan dengan alur 3 langkah mudah: Pilih sumber foto &rarr; Ekstraksi teks otomatis &rarr; Simpan data ke riwayat. Form dilengkapi selector chip nama pengemudi (Nabil Putra, Satria) dan pilihan brand BBM resmi (Pertamina, Shell, BP, Vivo).
+                        </p>
+                        <div class="showcase-features">
+                            <span>Multi-Mode Upload</span>
+                            <span>PaddleOCR Backend</span>
+                            <span>Perhitungan Otomatis Total</span>
+                            <span>Database MySQL scanota</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: History Focus -->
+        <div id="tab-history" class="tab-pane">
+            <div class="showcase-grid">
+                <div class="showcase-card">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/ocr-nota-riwayat.png', 'Riwayat Pengisian - Tangkapan Layar Lengkap')">
+                        <img src="gambar/ocr-nota-riwayat.png" alt="Riwayat Pengisian FuelScan">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Audit & Pelaporan</span>
+                        <h3>Tabel Riwayat & Ekspor Bukti Transaksi</h3>
+                        <p>
+                            Semua nota yang telah dipindai tercatat rapi beserta bukti visual struk asli. Memudahkan bagian operasional kantor melakukan verifikasi pengeluaran BBM dengan fitur export instan ke CSV dan dokumen PDF per nama pengemudi.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Pencarian Cepat SPBU/Struk</span>
+                            <span>Filter Periode Tanggal</span>
+                            <span>Pratinjau Struk Termal</span>
+                            <span>Export Reimbursement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Stats Focus -->
+        <div id="tab-stats" class="tab-pane">
+            <div class="showcase-grid">
+                <div class="showcase-card">
+                    <div class="showcase-img-container" onclick="openLightbox('gambar/ocr-nota-statistik.png', 'Statistik Pengeluaran - Tangkapan Layar Lengkap')">
+                        <img src="gambar/ocr-nota-statistik.png" alt="Statistik BBM FuelScan">
+                        <div class="showcase-overlay">
+                            <span class="zoom-btn"><i class="ri-zoom-in-line"></i> Perbesar Foto</span>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <span class="showcase-badge">Visualisasi Data</span>
+                        <h3>Dasbor Analitik Konsumsi & Pengeluaran</h3>
+                        <p>
+                            Memberikan transparansi penuh terhadap anggaran operasional bahan bakar. Visualisasi distribusi jenis bahan bakar memperlihatkan konsumsi Pertalite RON 90 sebesar 55.3% dan Pertamax RON 92 sebesar 44.7% dari total 19,57 liter BBM yang terbeli.
+                        </p>
+                        <div class="showcase-features">
+                            <span>Perbandingan Biaya Driver</span>
+                            <span>Volume Liter Real-time</span>
+                            <span>Rata-rata Harga Pasar</span>
+                            <span>Grafik Distribusi Interaktif</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="process-container">
+            <div class="process-header" data-aos="fade-up">
+                <h2>Alur Kerja Sistem (Pipeline)</h2>
+                <p>Bagaimana teknologi AI memproses selembar struk SPBU menjadi data terstruktur dalam hitungan detik</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+                    <div class="step-number">1</div>
+                    <h3>Capture Struk</h3>
+                    <p>Pengemudi mengambil foto nota SPBU via kamera ponsel, webcam, atau upload gambar.</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">2</div>
+                    <h3>PaddleOCR Engine</h3>
+                    <p>Model OCR memproses binarisasi gambar dan mendeteksi koordinat teks (bounding boxes).</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">3</div>
+                    <h3>Parsing & Validasi</h3>
+                    <p>Sistem memetakan entitas (SPBU, liter, total Rp) serta memverifikasi keselamatan data.</p>
+                </div>
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">4</div>
+                    <h3>Simpan & Analitik</h3>
+                    <p>Data tersimpan di MySQL scanota, masuk ke riwayat filterable, dan direkap ke dasbor statistik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="content-section">
+        <div class="results-card" data-aos="fade-up">
+            <div class="results-icon">
+                <i class="ri-rocket-2-line"></i>
+            </div>
+            <h2>Dampak & Hasil Implementasi</h2>
+            <p>
+                Penerapan <strong>OCR Scan Nota Bensin (FuelScan)</strong> mengubah proses manual yang memakan waktu menjadi sistem digital otomatis, paperless, dan bebas dari selisih nota operasional.
+            </p>
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Paperless & Bebas Struk Hilang</span>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <span class="stat-number">&lt; 3s</span>
+                    <span class="stat-label">Kecepatan Ekstraksi PaddleOCR</span>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <span class="stat-number">4+ SPBU</span>
+                    <span class="stat-label">Pertamina, Shell, BP &amp; Vivo</span>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <span class="stat-number">2 Format</span>
+                    <span class="stat-label">Export Laporan CSV &amp; PDF</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-aos="fade-up">
+        <div class="cta-buttons">
+            <a href="index.html#portfolio" class="btn btn-primary">
+                <i class="ri-arrow-left-line"></i> Kembali ke Portfolio
+            </a>
+            <a href="index.html#contact" class="btn btn-outline">
+                <i class="ri-mail-send-line"></i> Hubungi Saya
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Portfolio. Project Detail - OCR Scan Nota Bensin (FuelScan)</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightboxImg" src="" alt="Enlarged View">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 700,
+            easing: 'ease-out-cubic',
+        });
+
+        // Tab Switching
+        function switchTab(tabName, clickedBtn) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+            clickedBtn.classList.add('active');
+            const targetPane = document.getElementById('tab-' + tabName);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+
+            // Refresh AOS animations
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+        }
+
+        // Lightbox Modal Functions
+        function openLightbox(imgSrc, caption) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImg');
+            const modalCaption = document.getElementById('lightboxCaption');
+
+            modalImg.src = imgSrc;
+            modalCaption.textContent = caption;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+
+</html>

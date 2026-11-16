@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juara 2 KEJURPROV Polo Air - Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root { --gold: #fbbf24; --bg: #090b14; --card: rgba(15,23,42,.84); --muted: #aab4c8; --line: rgba(255,255,255,.1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; color: #f8fafc; background: radial-gradient(circle at 15% 5%, rgba(251,191,36,.18), transparent 32%), radial-gradient(circle at 90% 80%, rgba(14,165,233,.16), transparent 35%), var(--bg); font: 1rem/1.7 Inter, sans-serif; }
+        h1, h2 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .navbar { padding: 1rem 2rem; border-bottom: 1px solid var(--line); background: rgba(9,11,20,.8); backdrop-filter: blur(16px); }
+        .nav-inner, main { max-width: 1120px; margin: auto; }
+        .back { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1.2rem; border: 1px solid var(--line); border-radius: 50px; color: #fff; text-decoration: none; }
+        .hero { padding: 6rem 2rem 3rem; text-align: center; }
+        .eyebrow { margin-bottom: 1rem; color: var(--gold); font-size: .8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { margin-bottom: 1rem; font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: 1.1; background: linear-gradient(135deg,#fff 30%,var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .lead { max-width: 680px; margin: auto; color: var(--muted); }
+        .content { padding: 0 2rem 4rem; }
+        .card { padding: 2rem; border: 1px solid var(--line); border-radius: 1.3rem; background: var(--card); }
+        .card h2 { margin-bottom: .8rem; font-size: 1.4rem; }
+        .card p { color: var(--muted); }
+        .facts { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem; }
+        .fact { padding: .5rem .8rem; border: 1px solid rgba(251,191,36,.3); border-radius: 50px; color: #fde68a; font-size: .85rem; }
+        .gallery { margin-top: 2rem; }
+        .gallery h2 { margin-bottom: 1rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        figure { overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,.04); }
+        figure img { display: block; width: 100%; height: 320px; object-fit: cover; transition: transform .4s ease; }
+        figure:hover img { transform: scale(1.04); }
+        figcaption { padding: .8rem 1rem; color: var(--muted); font-size: .82rem; }
+        footer { padding: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: .85rem; }
+        @media (max-width: 800px) { .gallery-grid { grid-template-columns: 1fr; } .hero { padding-top: 4rem; } .navbar, .hero, .content { padding-left: 1rem; padding-right: 1rem; } figure img { height: 380px; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div class="nav-inner"><a class="back" href="index.html"><i class="ri-arrow-left-line"></i> Kembali</a></div></nav>
+    <main>
+        <section class="hero"><div class="eyebrow"><i class="ri-trophy-line"></i> Prestasi & Sertifikat</div><h1>Juara 2 KEJURPROV Polo Air</h1><p class="lead">Pencapaian medali perak pada Kejuaraan Provinsi (KEJURPROV) Akuatik Jawa Timur 2026 cabang Polo Air.</p></section>
+        <section class="content">
+            <article class="card"><h2><i class="ri-medal-line"></i> Kejurprov Jawa Timur 2026</h2><p>Berhasil meraih Juara 2 pada Kejuaraan Provinsi Akuatik Jawa Timur 2026 cabang Polo Air yang diselenggarakan di Kolam Renang Pasar Besar, Kota Madiun.</p><div class="facts"><span class="fact">Juara 2 / Medali Perak</span><span class="fact">Polo Air</span><span class="fact">Kota Madiun</span><span class="fact">2026</span></div></article>
+            <div class="gallery"><h2><i class="ri-image-line"></i> Dokumentasi Prestasi</h2><div class="gallery-grid"><figure><img src="gambar/kejurprov-polo-air-piagam.jpeg" alt="Piagam dan medali Juara 2 KEJURPROV Polo Air"><figcaption>Piagam penghargaan dan medali</figcaption></figure><figure><img src="gambar/kejurprov-polo-air-podium.jpeg" alt="Penyerahan penghargaan Juara 2 KEJURPROV Polo Air"><figcaption>Penyerahan penghargaan</figcaption></figure><figure><img src="gambar/kejurprov-polo-air-tim.jpeg" alt="Dokumentasi tim Polo Air Sidoarjo di kolam renang"><figcaption>Dokumentasi bersama tim</figcaption></figure></div></div>
+        </section>
+    </main>
+    <footer>&copy; 2026 Muhammad Nabil Putra Ramadhan. Prestasi Polo Air.</footer>
+</body>
+</html>

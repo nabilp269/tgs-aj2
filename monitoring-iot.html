@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Sensor IoT - Project Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root { --cyan: #00f2fe; --blue: #00a4ff; --purple: #8b5cf6; --bg: #07090e; --card: rgba(15, 23, 42, .82); --muted: #94a3b8; --line: rgba(255,255,255,.1); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { min-height: 100vh; color: #f8fafc; background: radial-gradient(circle at 12% 8%, rgba(139,92,246,.28), transparent 32%), radial-gradient(circle at 90% 80%, rgba(0,242,254,.16), transparent 35%), var(--bg); font: 1rem/1.7 Inter, sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .navbar { position: sticky; top: 0; z-index: 5; padding: 1rem 2rem; background: rgba(7,9,14,.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); }
+        .nav-inner, .hero, .content, .cta { max-width: 1160px; margin: auto; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+        .back { display: inline-flex; gap: .5rem; align-items: center; padding: .65rem 1.25rem; border: 1px solid var(--line); border-radius: 50px; color: #fff; text-decoration: none; transition: .3s; }
+        .back:hover { color: #000; background: var(--cyan); transform: translateX(-4px); }
+        .badge, .tag { color: var(--cyan); border: 1px solid rgba(0,242,254,.3); background: rgba(0,242,254,.08); border-radius: 50px; }
+        .badge { padding: .45rem 1rem; font-size: .8rem; font-weight: 700; }
+        .hero { min-height: 66vh; padding: 7rem 2rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .category { display: inline-flex; gap: .45rem; align-items: center; margin-bottom: 1.25rem; color: var(--cyan); font-size: .8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { max-width: 650px; margin-bottom: 1.2rem; font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 1.1; background: linear-gradient(135deg,#fff 30%,var(--cyan),var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .lead { max-width: 620px; margin-bottom: 1.8rem; color: var(--muted); font-size: 1.1rem; }
+        .meta { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; color: var(--muted); font-size: .9rem; }
+        .meta i { margin-right: .35rem; color: var(--cyan); }
+        .dashboard { padding: 1rem; border: 1px solid rgba(0,242,254,.32); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(10,29,44,.96), rgba(26,18,52,.94)); box-shadow: 0 25px 70px rgba(0,0,0,.45), 0 0 55px rgba(0,242,254,.12); }
+        .dash-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: .7rem .8rem; border-bottom: 1px solid var(--line); }
+        .dash-title { font-weight: 700; font-size: .95rem; }
+        .online { color: #7dffb2; font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; }
+        .online::before { content: ''; display: inline-block; width: .45rem; height: .45rem; margin-right: .35rem; border-radius: 50%; background: #39f58d; box-shadow: 0 0 10px #39f58d; }
+        .sensor-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .75rem; }
+        .sensor { padding: 1rem; border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,.06); }
+        .sensor i { display: block; margin-bottom: .4rem; color: var(--cyan); font-size: 1.5rem; }
+        .sensor small { display: block; color: var(--muted); font-size: .75rem; }
+        .sensor strong { font-size: 1.35rem; }
+        .status { display: inline-flex; align-items: center; gap: .35rem; margin-top: .35rem; color: #7dffb2; font-size: .7rem; }
+        .status::before { content: ''; width: .38rem; height: .38rem; border-radius: 50%; background: currentColor; }
+        .content { padding: 2rem 2rem 4rem; }
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card { padding: 2.2rem; border: 1px solid var(--line); border-radius: 1.4rem; background: var(--card); box-shadow: inset 0 1px rgba(255,255,255,.04); }
+        h2 { margin-bottom: 1.2rem; font-size: 1.45rem; }
+        h2 i { margin-right: .5rem; color: var(--cyan); }
+        .card p { margin-bottom: 1.5rem; color: var(--muted); }
+        .features { list-style: none; }
+        .features li { display: flex; gap: .65rem; margin: .75rem 0; color: #cbd5e1; }
+        .features i { color: var(--cyan); }
+        .info { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+        .info:last-child { margin: 0; padding: 0; border: 0; }
+        .info-label { margin-bottom: .2rem; color: var(--cyan); font-size: .72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+        .tag { padding: .3rem .7rem; font-size: .76rem; }
+        .cta { padding: 0 2rem 5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.5rem; border-radius: 50px; color: #000; background: linear-gradient(135deg,var(--cyan),var(--blue)); font-weight: 700; text-decoration: none; }
+        .btn.outline { color: #fff; background: transparent; border: 1px solid var(--line); }
+        footer { padding: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: .85rem; }
+        @media (max-width: 800px) { .hero, .content-grid { grid-template-columns: 1fr; } .hero { padding-top: 4.5rem; gap: 2rem; } .badge { display: none; } }
+        @media (max-width: 480px) { .navbar { padding: 1rem; } .hero, .content { padding-left: 1rem; padding-right: 1rem; } .card { padding: 1.4rem; } }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar"><div class="nav-inner"><a class="back" href="index.html"><i class="ri-arrow-left-line"></i> Kembali</a><span class="badge"><i class="ri-radar-line"></i> IoT Monitoring</span></div></nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <div class="category"><i class="ri-cpu-line"></i> Internet of Things & Mobile App</div>
+                <h1>Monitoring Sensor IoT</h1>
+                <p class="lead">Sistem monitoring kondisi lingkungan secara real-time yang menghubungkan perangkat sensor dengan dashboard web dan aplikasi mobile berbasis Flutter.</p>
+                <div class="meta"><span><i class="ri-calendar-line"></i> Project IoT</span><span><i class="ri-user-star-line"></i> UI/UX & Frontend Developer</span><span><i class="ri-wifi-line"></i> API & Bluetooth</span></div>
+            </div>
+            <div class="dashboard" aria-label="Tampilan dashboard Monitoring Sensor IoT">
+                <div class="dash-top"><span class="dash-title"><i class="ri-dashboard-3-line"></i> Dashboard Sensor</span><span class="online">Terhubung</span></div>
+                <div class="sensor-grid">
+                    <div class="sensor"><i class="ri-temp-hot-line"></i><small>Suhu</small><strong>25.0 °C</strong><span class="status">Normal</span></div>
+                    <div class="sensor"><i class="ri-drop-line"></i><small>Kelembapan</small><strong>55.4%</strong><span class="status">Normal</span></div>
+                    <div class="sensor"><i class="ri-fire-line"></i><small>Deteksi Api</small><strong>Aman</strong><span class="status">Tidak terdeteksi</span></div>
+                    <div class="sensor"><i class="ri-windy-line"></i><small>Gas</small><strong>145 PPM</strong><span class="status">Aman</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content"><div class="content-grid">
+            <article class="card">
+                <h2><i class="ri-file-text-line"></i> Deskripsi Proyek</h2>
+                <p>Monitoring Sensor IoT dibuat untuk membaca dan menampilkan data dari beberapa sensor lingkungan secara terpusat. Sistem ini membantu pengguna memantau kondisi ruangan, mendeteksi potensi bahaya, serta menerima informasi sensor melalui web maupun aplikasi.</p>
+                <h3>Fitur Utama</h3>
+                <ul class="features">
+                    <li><i class="ri-checkbox-circle-fill"></i> Monitoring suhu dan kelembapan secara real-time</li>
+                    <li><i class="ri-checkbox-circle-fill"></i> Deteksi api sebagai peringatan awal kondisi darurat</li>
+                    <li><i class="ri-checkbox-circle-fill"></i> Pemantauan kadar gas dan status keamanan lingkungan</li>
+                    <li><i class="ri-checkbox-circle-fill"></i> Dashboard web dan aplikasi mobile Flutter yang responsif</li>
+                    <li><i class="ri-checkbox-circle-fill"></i> Komunikasi data melalui REST API dan Bluetooth</li>
+                </ul>
+            </article>
+            <aside class="card">
+                <div class="info"><div class="info-label">Nama Karya</div><div>Monitoring Sensor IoT</div></div>
+                <div class="info"><div class="info-label">Platform</div><div>Web Dashboard & Android App</div></div>
+                <div class="info"><div class="info-label">Teknologi</div><div class="tags"><span class="tag">Flutter</span><span class="tag">REST API</span><span class="tag">Bluetooth</span><span class="tag">IoT Sensor</span></div></div>
+                <div class="info"><div class="info-label">Sensor</div><div class="tags"><span class="tag">Suhu</span><span class="tag">Api</span><span class="tag">Gas</span><span class="tag">Kelembapan</span></div></div>
+            </aside>
+        </div></section>
+        <div class="cta"><a class="btn" href="index.html"><i class="ri-arrow-left-line"></i> Kembali ke Portfolio</a></div>
+    </main>
+    <footer>&copy; 2026 Muhammad Nabil Putra Ramadhan. Project Detail - Monitoring Sensor IoT</footer>
+</body>
+</html>

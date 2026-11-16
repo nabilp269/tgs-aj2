@@ -54,11 +54,18 @@
         .info-label { margin-bottom: .2rem; color: var(--cyan); font-size: .72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
         .tags { display: flex; flex-wrap: wrap; gap: .45rem; }
         .tag { padding: .3rem .7rem; font-size: .76rem; }
+        .gallery { margin-top: 2rem; }
+        .gallery h2 { margin-bottom: 1.2rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .gallery-item { overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,.04); }
+        .gallery-item img { display: block; width: 100%; height: 230px; object-fit: cover; transition: transform .4s ease; }
+        .gallery-item:hover img { transform: scale(1.04); }
+        .gallery-item figcaption { padding: .8rem 1rem; color: var(--muted); font-size: .82rem; }
         .cta { padding: 0 2rem 5rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.5rem; border-radius: 50px; color: #000; background: linear-gradient(135deg,var(--cyan),var(--blue)); font-weight: 700; text-decoration: none; }
         .btn.outline { color: #fff; background: transparent; border: 1px solid var(--line); }
         footer { padding: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); text-align: center; font-size: .85rem; }
-        @media (max-width: 800px) { .hero, .content-grid { grid-template-columns: 1fr; } .hero { padding-top: 4.5rem; gap: 2rem; } .badge { display: none; } }
+        @media (max-width: 800px) { .hero, .content-grid, .gallery-grid { grid-template-columns: 1fr; } .hero { padding-top: 4.5rem; gap: 2rem; } .badge { display: none; } }
         @media (max-width: 480px) { .navbar { padding: 1rem; } .hero, .content { padding-left: 1rem; padding-right: 1rem; } .card { padding: 1.4rem; } }
     </style>
 </head>
@@ -105,6 +112,14 @@
                 <div class="info"><div class="info-label">Sensor</div><div class="tags"><span class="tag">Suhu</span><span class="tag">Api</span><span class="tag">Gas</span><span class="tag">Kelembapan</span></div></div>
             </aside>
         </div></section>
+        <section class="content gallery">
+            <h2><i class="ri-image-line"></i> Dokumentasi Proyek</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item"><img src="gambar/monitoring-iot-laptop.jpeg" alt="Dashboard monitoring IoT pada laptop dari sudut lain"><figcaption>Dashboard dan kode aplikasi</figcaption></figure>
+                <figure class="gallery-item"><img src="gambar/monitoring-iot-rangkaian.jpeg" alt="Rangkaian sensor IoT dan modul elektronik"><figcaption>Rangkaian sensor dan modul</figcaption></figure>
+                <figure class="gallery-item"><img src="gambar/monitoring-iot-komponen.jpeg" alt="Komponen dan prototipe sensor IoT"><figcaption>Komponen prototipe perangkat</figcaption></figure>
+            </div>
+        </section>
         <div class="cta"><a class="btn" href="index.html"><i class="ri-arrow-left-line"></i> Kembali ke Portfolio</a></div>
     </main>
     <footer>&copy; 2026 Muhammad Nabil Putra Ramadhan. Project Detail - Monitoring Sensor IoT</footer>

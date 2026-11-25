@@ -378,6 +378,19 @@
             pointer-events: none;
         }
 
+        .mobile-drawer::after {
+            content: 'MENU NAVIGASI';
+            position: absolute;
+            right: -2.8rem;
+            bottom: 7.5rem;
+            color: rgba(148, 219, 255, .18);
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .24em;
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+
         .mobile-drawer-brand {
             position: relative;
             margin: 0 0 1.5rem;
@@ -441,11 +454,31 @@
             transition: color .25s ease, background .25s ease, border-color .25s ease, transform .25s ease;
         }
 
+        .mobile-drawer a i:first-child {
+            width: 1.35rem;
+            margin-right: .7rem;
+            color: var(--primary);
+            font-size: 1.15rem;
+            text-align: center;
+        }
+
+        .mobile-drawer a i:last-child {
+            margin-left: auto;
+            color: #7182a8;
+            font-size: 1.1rem;
+            transition: transform .25s ease, color .25s ease;
+        }
+
         .mobile-drawer a:hover {
             color: var(--primary);
             background: rgba(94, 231, 255, .1);
             border-color: rgba(94, 231, 255, .35);
             transform: translateX(5px);
+        }
+
+        .mobile-drawer a:hover i:last-child {
+            color: var(--primary);
+            transform: translateX(3px);
         }
 
         .mobile-drawer .btn-drawer-cv {
@@ -464,6 +497,10 @@
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
             transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .mobile-drawer .btn-drawer-cv i {
+            font-size: 1.2rem;
         }
 
         .mobile-drawer .btn-drawer-cv:hover {
@@ -2171,10 +2208,10 @@
             <strong>Nabil<span>.</span></strong>
             <span>Junior Software Engineer</span>
         </div>
-        <a href="#home" onclick="toggleMobileDrawer()">Home</a>
-        <a href="#about" onclick="toggleMobileDrawer()">Tentang Saya</a>
-        <a href="#portfolio" onclick="toggleMobileDrawer()">Karya, Sertifikat & Prestasi</a>
-        <a href="#contact" onclick="toggleMobileDrawer()">Data Diri</a>
+        <a href="#home" onclick="toggleMobileDrawer()"><i class="ri-home-5-line" aria-hidden="true"></i><span>Home</span><i class="ri-arrow-right-s-line" aria-hidden="true"></i></a>
+        <a href="#about" onclick="toggleMobileDrawer()"><i class="ri-user-3-line" aria-hidden="true"></i><span>Tentang Saya</span><i class="ri-arrow-right-s-line" aria-hidden="true"></i></a>
+        <a href="#portfolio" onclick="toggleMobileDrawer()"><i class="ri-briefcase-4-line" aria-hidden="true"></i><span>Karya & Prestasi</span><i class="ri-arrow-right-s-line" aria-hidden="true"></i></a>
+        <a href="#contact" onclick="toggleMobileDrawer()"><i class="ri-contacts-line" aria-hidden="true"></i><span>Data Diri & Kontak</span><i class="ri-arrow-right-s-line" aria-hidden="true"></i></a>
         <button class="btn-drawer-cv" onclick="toggleMobileDrawer(); openCvModal();">
             <i class="ri-file-user-line"></i> Lihat & Unduh CV
         </button>
